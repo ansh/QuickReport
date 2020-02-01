@@ -81,7 +81,6 @@
                                 </state>
                                 <connections>
                                     <action selector="nextTapped:" destination="UBZ-4g-uSy" eventType="touchUpInside" id="EwE-UI-jyJ"/>
-                                    <segue destination="fTw-I3-7hS" kind="show" id="rMt-34-BEe"/>
                                 </connections>
                             </button>
                             <segmentedControl hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="Fad-8L-9N4">
@@ -136,6 +135,7 @@
                         <outlet property="RetakeButton" destination="4zo-LL-ugL" id="hwu-Wj-hW2"/>
                         <outlet property="TextLabel" destination="cda-TQ-kiV" id="6KP-Yv-gqn"/>
                         <outlet property="imageView" destination="e8d-wp-ppn" id="QZn-dQ-EgH"/>
+                        <segue destination="lag-Lg-H5E" kind="presentation" identifier="nextSegue" id="Oub-tD-PaR"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="E6i-bv-9JT" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -143,21 +143,66 @@
             </objects>
             <point key="canvasLocation" x="-681.15942028985512" y="117.39130434782609"/>
         </scene>
-        <!--Detail View Controller-->
-        <scene sceneID="S5l-GX-0KP">
+        <!--Form View Controller-->
+        <scene sceneID="z4h-KM-5hi">
             <objects>
-                <viewController id="fTw-I3-7hS" customClass="DetailViewController" customModule="QuickReport" customModuleProvider="target" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="U6g-z6-rKE">
+                <viewController title="Form View Controller" id="lag-Lg-H5E" customClass="FormViewController" customModule="QuickReport" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="ygg-qJ-Sji">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="716"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillProportionally" spacing="12" translatesAutoresizingMaskIntoConstraints="NO" id="6ah-y5-oHU">
+                                <rect key="frame" x="30" y="20" width="354" height="676"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Form Data" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="sQF-uW-TiG">
+                                        <rect key="frame" x="0.0" y="0.0" width="354" height="20.333333333333332"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="Pothole" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="g8L-RH-5T9">
+                                        <rect key="frame" x="0.0" y="32.333333333333343" width="354" height="33.666666666666657"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                        <textInputTraits key="textInputTraits"/>
+                                    </textField>
+                                    <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" text="Description" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="PAq-LF-a6z">
+                                        <rect key="frame" x="0.0" y="78" width="354" height="213"/>
+                                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                        <color key="textColor" systemColor="labelColor" cocoaTouchSystemColor="darkTextColor"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                        <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                                    </textView>
+                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="Address" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="NE7-kg-ue9">
+                                        <rect key="frame" x="0.0" y="303" width="354" height="33.666666666666686"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                        <textInputTraits key="textInputTraits"/>
+                                    </textField>
+                                    <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="VxR-bJ-KfW">
+                                        <rect key="frame" x="0.0" y="348.66666666666669" width="354" height="286.00000000000006"/>
+                                    </mapView>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="grn-nq-9o1">
+                                        <rect key="frame" x="0.0" y="646.66666666666663" width="354" height="29.333333333333371"/>
+                                        <state key="normal" title="Submit"/>
+                                    </button>
+                                </subviews>
+                            </stackView>
+                        </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
-                        <viewLayoutGuide key="safeArea" id="WrT-f7-GCb"/>
+                        <constraints>
+                            <constraint firstItem="6ah-y5-oHU" firstAttribute="leading" secondItem="ygg-qJ-Sji" secondAttribute="leading" constant="30" id="32J-D1-iw2"/>
+                            <constraint firstAttribute="trailing" secondItem="6ah-y5-oHU" secondAttribute="trailing" constant="30" id="I5W-hi-kzn"/>
+                            <constraint firstItem="6ah-y5-oHU" firstAttribute="top" secondItem="pC9-r5-buE" secondAttribute="top" constant="20" id="PE0-O7-TXx"/>
+                            <constraint firstItem="6ah-y5-oHU" firstAttribute="bottom" secondItem="pC9-r5-buE" secondAttribute="bottom" constant="-20" id="goy-Je-NYL"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="pC9-r5-buE"/>
                     </view>
-                    <navigationItem key="navigationItem" id="8k6-GX-yXv"/>
+                    <connections>
+                        <outlet property="problemText" destination="g8L-RH-5T9" id="Lm2-Qq-Eig"/>
+                    </connections>
                 </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="w8y-8S-yVS" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="fDD-yw-5xg" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="218" y="122"/>
+            <point key="canvasLocation" x="378.26086956521743" y="-339.13043478260875"/>
         </scene>
         <!--Pothole View Controller-->
         <scene sceneID="SYh-3S-0u1">
@@ -386,7 +431,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="wlr-2G-mVX" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1028.985507246377" y="485.86956521739137"/>
+            <point key="canvasLocation" x="378" y="455"/>
         </scene>
     </scenes>
     <resources>

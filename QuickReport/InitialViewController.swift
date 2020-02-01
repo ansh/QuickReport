@@ -48,10 +48,7 @@ class InitialViewController: UIViewController, UINavigationControllerDelegate, U
     }
     
     @IBAction func nextTapped(_ sender: Any) {
-        if currentIssueIndex == myShortenedIssues.firstIndex(of: "Pothole")
-        {
-            self.performSegue(withIdentifier: "potholeSegue", sender: nil)
-        }
+        performSegue(withIdentifier: "nextSegue", sender: self)
     }
     
     @IBAction func cameraPressed(_ sender: Any) {
