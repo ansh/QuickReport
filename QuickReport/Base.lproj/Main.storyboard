@@ -81,7 +81,6 @@
                                 </state>
                                 <connections>
                                     <action selector="nextTapped:" destination="UBZ-4g-uSy" eventType="touchUpInside" id="EwE-UI-jyJ"/>
-                                    <segue destination="fTw-I3-7hS" kind="show" id="rMt-34-BEe"/>
                                 </connections>
                             </button>
                             <segmentedControl hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="Fad-8L-9N4">
@@ -136,6 +135,7 @@
                         <outlet property="RetakeButton" destination="4zo-LL-ugL" id="hwu-Wj-hW2"/>
                         <outlet property="TextLabel" destination="cda-TQ-kiV" id="6KP-Yv-gqn"/>
                         <outlet property="imageView" destination="e8d-wp-ppn" id="QZn-dQ-EgH"/>
+                        <segue destination="lag-Lg-H5E" kind="presentation" identifier="nextSegue" id="Oub-tD-PaR"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="E6i-bv-9JT" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -148,40 +148,40 @@
             <objects>
                 <viewController title="Form View Controller" id="lag-Lg-H5E" customClass="FormViewController" customModule="QuickReport" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="ygg-qJ-Sji">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="716"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillProportionally" spacing="12" translatesAutoresizingMaskIntoConstraints="NO" id="6ah-y5-oHU">
-                                <rect key="frame" x="30" y="20" width="354" height="696"/>
+                                <rect key="frame" x="30" y="20" width="354" height="676"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Form Data" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="sQF-uW-TiG">
-                                        <rect key="frame" x="0.0" y="0.0" width="354" height="21"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="354" height="19.666666666666668"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="Pothole" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="g8L-RH-5T9">
-                                        <rect key="frame" x="0.0" y="33" width="354" height="35.333333333333343"/>
+                                        <rect key="frame" x="0.0" y="31.666666666666664" width="354" height="32.999999999999993"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                         <textInputTraits key="textInputTraits"/>
                                     </textField>
                                     <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" text="Description" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="PAq-LF-a6z">
-                                        <rect key="frame" x="0.0" y="80.333333333333314" width="354" height="218"/>
+                                        <rect key="frame" x="0.0" y="76.666666666666671" width="354" height="214.66666666666663"/>
                                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                                         <color key="textColor" systemColor="labelColor" cocoaTouchSystemColor="darkTextColor"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                         <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                                     </textView>
                                     <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="Address" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="NE7-kg-ue9">
-                                        <rect key="frame" x="0.0" y="310.33333333333331" width="354" height="35.333333333333314"/>
+                                        <rect key="frame" x="0.0" y="303.33333333333331" width="354" height="33"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                         <textInputTraits key="textInputTraits"/>
                                     </textField>
                                     <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="VxR-bJ-KfW">
-                                        <rect key="frame" x="0.0" y="357.66666666666669" width="354" height="293.00000000000006"/>
+                                        <rect key="frame" x="0.0" y="348.33333333333337" width="354" height="288.33333333333337"/>
                                     </mapView>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="grn-nq-9o1">
-                                        <rect key="frame" x="0.0" y="662.66666666666663" width="354" height="33.333333333333371"/>
+                                        <rect key="frame" x="0.0" y="648.66666666666663" width="354" height="27.333333333333371"/>
                                         <state key="normal" title="Submit"/>
                                     </button>
                                 </subviews>
@@ -196,6 +196,9 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="pC9-r5-buE"/>
                     </view>
+                    <connections>
+                        <outlet property="problemText" destination="g8L-RH-5T9" id="Lm2-Qq-Eig"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="fDD-yw-5xg" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
