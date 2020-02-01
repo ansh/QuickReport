@@ -161,7 +161,6 @@
 				69F08BA389B5703E4A94701F /* Pods-QuickReportTests.debug.xcconfig */,
 				1BE44695C6FD32E43C59E818 /* Pods-QuickReportTests.release.xcconfig */,
 			);
-			name = Pods;
 			path = Pods;
 			sourceTree = "<group>";
 		};
@@ -305,7 +304,7 @@
 			};
 			buildConfigurationList = 83CBB9FA1A601CBA00E9B192 /* Build configuration list for PBXProject "QuickReport" */;
 			compatibilityVersion = "Xcode 3.2";
-			developmentRegion = English;
+			developmentRegion = en;
 			hasScannedForEncodings = 0;
 			knownRegions = (
 				en,
