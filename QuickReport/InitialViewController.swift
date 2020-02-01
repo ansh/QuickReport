@@ -1,40 +1,57 @@
 //
-//  ViewController.swift
-//  QuickThing
+//  InitialViewController.swift
+//  QuickReport
 //
-//  Created by Rami Sbahi on 11/3/19.
-//  Copyright © 2019 Rami Sbahi. All rights reserved.
+//  Created by Rami Sbahi on 2/1/20.
+//  Copyright © 2020 Rami Sbahi. All rights reserved.
 //
 
 import UIKit
-import CoreML
 
-class ViewController: UIViewController, UINavigationControllerDelegate, UIImagePickerControllerDelegate {
+class InitialViewController: UIViewController, UINavigationControllerDelegate, UIImagePickerControllerDelegate {
+    
+    @IBOutlet weak var imageView: UIImageView!
+    @IBOutlet weak var CameraButton: UIButton!
+    @IBOutlet weak var NextButton: UIButton!
+    @IBOutlet weak var RetakeButton: UIButton!
+    @IBOutlet weak var IssueButton: UIButton!
+    @IBOutlet weak var Logo: UIImageView!
+    
+    @IBOutlet weak var TextLabel: UILabel!
     
     var imagePicker: UIImagePickerController!
     var model: SecondImageClassifier!
     
-    @IBOutlet weak var imageView: UIImageView!
     var currentIssueIndex = -1
-    
-    let myShortenedIssues = ["Pothole", "Litter", "Traffic Signs", "Tree Blocks Signs", "Sidewalk Repair", "Graffiti"]
     
     @IBOutlet var IssueCollection: [UIButton]!
     
-    @IBOutlet weak var NextButton: UIButton!
+    let myShortenedIssues = ["Pothole", "Litter", "Traffic Signs", "Tree Blocks Signs", "Sidewalk Repair", "Graffiti"]
     
     
-    @IBOutlet weak var IssueButton: UIButton!
+
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        model = SecondImageClassifier()
+        // Do any additional setup after loading the view.
+    }
     
-    @IBAction func issueTapped(_ sender: UIButton) {
-        
-        IssueCollection.forEach { (button) in
-            UIView.animate(withDuration: 0.3, animations: {
-                button.isHidden = !button.isHidden
-                self.view.layoutIfNeeded()
-            })
+    func showButtons()
+    {
+        imageView.isHidden = false
+        NextButton.isHidden = false
+        RetakeButton.isHidden = false
+        IssueButton.isHidden = false
+        Logo.isHidden = true
+        TextLabel.isHidden = true
+        CameraButton.isHidden = true
+    }
+    
+    @IBAction func nextTapped(_ sender: Any) {
+        if currentIssueIndex == myShortenedIssues.firstIndex(of: "Pothole")
+        {
+            self.performSegue(withIdentifier: "potholeSegue", sender: nil)
         }
-        
     }
     
     @IBAction func individualIssueTapped(_ sender: UIButton) {
@@ -57,34 +74,26 @@ class ViewController: UIViewController, UINavigationControllerDelegate, UIImageP
         print(currentIssueIndex)
     }
     
-    
-    
-    @IBAction func takePhoto(_ sender: Any) {
+    @IBAction func cameraPressed(_ sender: Any) {
         
         imagePicker =  UIImagePickerController()
         imagePicker.delegate = self
         imagePicker.sourceType = .camera
 
         present(imagePicker, animated: true, completion: nil)
-        
-        
     }
     
-    
-    
-    func makeButtonsAppear()
-    {
-        NextButton.isHidden = false
-        IssueButton.isHidden = false
-    }
-    
-    override func viewDidLoad() {
-        super.viewDidLoad()
+    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
         
-        // Converts image into 224x224 square (why not 299x299?
+        
+        imagePicker.dismiss(animated: true, completion: nil)
+        imageView.image = info[.originalImage] as? UIImage // retrieve image
+        
+        // Converts image into 299x299 square
         UIGraphicsBeginImageContextWithOptions(CGSize(width: 224, height: 224), true, 2.0)
         imageView.draw(CGRect(x: 0, y: 0, width: 224, height: 224))
-        let newImage = UIImage()
+        let newImage = UIGraphicsGetImageFromCurrentImageContext()!
+        UIGraphicsEndImageContext()
            
         
         // convert into CVPixelBuffer for our model
@@ -118,24 +127,23 @@ class ViewController: UIViewController, UINavigationControllerDelegate, UIImageP
         print("I think this is \(issueString).")
         print(prediction.scores__0)
         
-        makeButtonsAppear()
+        showButtons()
         IssueButton.setTitle(issueString, for: .normal)
         currentIssueIndex = myShortenedIssues.firstIndex(of: issueString)!
         print(currentIssueIndex)
     }
     
-    override func viewWillAppear(_ animated: Bool)
-    {
-        super.viewWillAppear(true)
-        model = SecondImageClassifier()
-    }
-
     
-    @IBAction func nextTapped(_ sender: Any) {
-        if currentIssueIndex == myShortenedIssues.firstIndex(of: "Pothole")
-        {
-            self.performSegue(withIdentifier: "potholeSegue", sender: nil)
-        }
-    }
-}
+    
 
+    /*
+    // MARK: - Navigation
+
+    // In a storyboard-based application, you will often want to do a little preparation before navigation
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        // Get the new view controller using segue.destination.
+        // Pass the selected object to the new view controller.
+    }
+    */
+
+}

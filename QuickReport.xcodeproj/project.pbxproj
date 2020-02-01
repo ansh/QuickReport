@@ -7,11 +7,11 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		363897F123E598B600C7E115 /* InitialViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 363897F023E598B600C7E115 /* InitialViewController.swift */; };
 		36550E38236EE7EC00B982D4 /* SecondImageClassifier.mlmodel in Sources */ = {isa = PBXBuildFile; fileRef = 36550E37236EE7EC00B982D4 /* SecondImageClassifier.mlmodel */; };
 		36550E3A236EEC0000B982D4 /* ImageClassifier.mlmodel in Sources */ = {isa = PBXBuildFile; fileRef = 36550E39236EEC0000B982D4 /* ImageClassifier.mlmodel */; };
 		36592F0C236EC79A0000E713 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36592F0B236EC79A0000E713 /* AppDelegate.swift */; };
 		36592F0E236EC79A0000E713 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36592F0D236EC79A0000E713 /* SceneDelegate.swift */; };
-		36592F10236EC79A0000E713 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36592F0F236EC79A0000E713 /* ViewController.swift */; };
 		36592F13236EC79A0000E713 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 36592F11236EC79A0000E713 /* Main.storyboard */; };
 		36592F15236EC79C0000E713 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 36592F14236EC79C0000E713 /* Assets.xcassets */; };
 		36592F18236EC79C0000E713 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 36592F16236EC79C0000E713 /* LaunchScreen.storyboard */; };
@@ -19,12 +19,12 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		363897F023E598B600C7E115 /* InitialViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InitialViewController.swift; sourceTree = "<group>"; };
 		36550E37236EE7EC00B982D4 /* SecondImageClassifier.mlmodel */ = {isa = PBXFileReference; lastKnownFileType = file.mlmodel; path = SecondImageClassifier.mlmodel; sourceTree = "<group>"; };
 		36550E39236EEC0000B982D4 /* ImageClassifier.mlmodel */ = {isa = PBXFileReference; lastKnownFileType = file.mlmodel; path = ImageClassifier.mlmodel; sourceTree = "<group>"; };
 		36592F08236EC79A0000E713 /* QuickReport.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = QuickReport.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		36592F0B236EC79A0000E713 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		36592F0D236EC79A0000E713 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
-		36592F0F236EC79A0000E713 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		36592F12236EC79A0000E713 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		36592F14236EC79C0000E713 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		36592F17236EC79C0000E713 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -68,10 +68,10 @@
 				36592F0B236EC79A0000E713 /* AppDelegate.swift */,
 				36B4825E236F2AA7003FCAF0 /* PotholeViewController.swift */,
 				36592F0D236EC79A0000E713 /* SceneDelegate.swift */,
-				36592F0F236EC79A0000E713 /* ViewController.swift */,
 				36592F11236EC79A0000E713 /* Main.storyboard */,
 				36592F14236EC79C0000E713 /* Assets.xcassets */,
 				36592F16236EC79C0000E713 /* LaunchScreen.storyboard */,
+				363897F023E598B600C7E115 /* InitialViewController.swift */,
 			);
 			path = QuickReport;
 			sourceTree = "<group>";
@@ -148,7 +148,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				36B4825F236F2AA7003FCAF0 /* PotholeViewController.swift in Sources */,
-				36592F10236EC79A0000E713 /* ViewController.swift in Sources */,
+				363897F123E598B600C7E115 /* InitialViewController.swift in Sources */,
 				36592F0C236EC79A0000E713 /* AppDelegate.swift in Sources */,
 				36550E38236EE7EC00B982D4 /* SecondImageClassifier.mlmodel in Sources */,
 				36592F0E236EC79A0000E713 /* SceneDelegate.swift in Sources */,
