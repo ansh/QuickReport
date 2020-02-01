@@ -23,37 +23,48 @@ import {
 class QuickReport extends Component{
   render() {
     return (
-      <View style={styles.container}>
-       <Text style={{ fontSize:22 }}>Only image clickable</Text>
-       <TouchableHighlight style={ styles.imageContainer }>
-            <Image style={ styles.image } source={require('./img/camera-cropped.png')} />
-       </TouchableHighlight>
-       <Text style={{ fontSize:22 }}>Entire Row Clickable</Text>
-       <TouchableHighlight style={ styles.imageContainer2 }>
-            <Image style={ styles.image } source={{ uri: 'http://www.free-avatars.com/data/media/37/cat_avatar_0597.jpg' }} />
-       </TouchableHighlight>
-      </View>
+      <View style = {styles.bigContainer}>
+        <View style={styles.container}>
+          <Text style={styles.textStyle}> QuickReport </Text>
+        </View>
+
+        <TouchableHighlight style={ styles.imageContainer }>
+              <Image style={ styles.image } source={require('./img/camera-cropped.png')} />
+         </TouchableHighlight>
+       </View>
     );
   }
 };
 
 const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    marginTop:60
+
+  bigContainer:
+  {
+    flex: 1
   },
+
+  container:
+  {
+    flex: 0,
+    left: 0,
+    top: 0
+  },
+
+  textStyle:{
+    fontSize: 60, top: 50, right: 0, color: 'gray'
+  },
+
   imageContainer: {
-    height:128,
-    width: 128,
-    borderRadius: 64
+    flex: 1,
+    alignItems: 'stretch',
+    justifyContent: 'center',
+    alignItems: 'center'
   },
   image: {
-    height:128,
-    width: 128,
-    borderRadius: 64,
+    height:200,
+    width: 200,
+    borderRadius: 100,
     backgroundColor: "green",
-  },
-  imageContainer2: {
   }
 });
 
