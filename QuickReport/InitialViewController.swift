@@ -14,17 +14,17 @@ class InitialViewController: UIViewController, UINavigationControllerDelegate, U
     @IBOutlet weak var CameraButton: UIButton!
     @IBOutlet weak var NextButton: UIButton!
     @IBOutlet weak var RetakeButton: UIButton!
-    @IBOutlet weak var IssueButton: UIButton!
     @IBOutlet weak var Logo: UIImageView!
     
+    @IBOutlet weak var IssueSelector: UISegmentedControl!
     @IBOutlet weak var TextLabel: UILabel!
     
     var imagePicker: UIImagePickerController!
     var model: SecondImageClassifier!
     
-    var currentIssueIndex = -1
+    static var chosenIssue = ""
     
-    @IBOutlet var IssueCollection: [UIButton]!
+    var currentIssueIndex = -1
     
     let myShortenedIssues = ["Pothole", "Litter", "Traffic Signs", "Tree Blocks Signs", "Sidewalk Repair", "Graffiti"]
     
@@ -41,7 +41,7 @@ class InitialViewController: UIViewController, UINavigationControllerDelegate, U
         imageView.isHidden = false
         NextButton.isHidden = false
         RetakeButton.isHidden = false
-        IssueButton.isHidden = false
+        IssueSelector.isHidden = false
         Logo.isHidden = true
         TextLabel.isHidden = true
         CameraButton.isHidden = true
@@ -52,26 +52,6 @@ class InitialViewController: UIViewController, UINavigationControllerDelegate, U
         {
             self.performSegue(withIdentifier: "potholeSegue", sender: nil)
         }
-    }
-    
-    @IBAction func individualIssueTapped(_ sender: UIButton) {
-        
-        IssueCollection.forEach { (button) in
-            UIView.animate(withDuration: 0.3, animations: {
-                button.isHidden = !button.isHidden
-                self.view.layoutIfNeeded()
-            })
-        }
-        
-        guard let title = sender.currentTitle else
-        {
-            return
-        }
-        
-        IssueButton.setTitle(title, for: .normal)
-        
-        currentIssueIndex = myShortenedIssues.firstIndex(of: title)!
-        print(currentIssueIndex)
     }
     
     @IBAction func cameraPressed(_ sender: Any) {
@@ -122,17 +102,39 @@ class InitialViewController: UIViewController, UINavigationControllerDelegate, U
             return
         }
          
-        let myMap = ["CICAgICAgL23IBINcG90aG9sZXJlcGFpcg==" : "Pothole", "CICAgICAgP20LRINbGl0dGVycmVtb3ZhbA==" : "Litter", "CICAgICAgP3kMRIMdHJhZmZpY3NpZ25z" : "Traffic Signs", "CICAgICAgP3EXxIRdHJlZWJsb2NraW5nc2lnbnM=" : "Tree Blocks Signs", "CICAgICAgP3UVxIOc2lkZXdhbGtyZXBhaXI=" : "Sidewalk Repair", "CICAgICAgP2UahIIR3JhZmZpdGk=" : "Graffiti"]
-        let issueString = myMap[prediction.classLabel]!
-        print("I think this is \(issueString).")
-        print(prediction.scores__0)
+        let myMap = ["CICAgICAgL23IBINcG90aG9sZXJlcGFpcg==" : "Pothole", "CICAgICAgP20LRINbGl0dGVycmVtb3ZhbA==" : "Litter", "CICAgICAgP3kMRIMdHJhZmZpY3NpZ25z" : "Traffic Signal Repair", "CICAgICAgP3EXxIRdHJlZWJsb2NraW5nc2lnbnM=" : "Tree Blocks Signs", "CICAgICAgP3UVxIOc2lkZXdhbGtyZXBhaXI=" : "Sidewalk Repair", "CICAgICAgP2UahIIR3JhZmZpdGk=" : "Graffiti"]
+        
+        let sorted = Array(prediction.scores__0.sorted{$0.1 > $1.1})
+        
+        IssueSelector.selectedSegmentIndex = 0
+        
+        
+        for i in 0...2
+        {
+            let start = myMap[sorted[i].key]! + " ("
+            let percent = round(sorted[i].value*1000.0) / 10.0
+            let string = start + String(percent) + "%)"
+            IssueSelector.setTitle(string, forSegmentAt: i)
+        }
         
         showButtons()
-        IssueButton.setTitle(issueString, for: .normal)
-        currentIssueIndex = myShortenedIssues.firstIndex(of: issueString)!
-        print(currentIssueIndex)
     }
     
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        let parts = IssueSelector.titleForSegment(at: IssueSelector.selectedSegmentIndex)!.components(separatedBy: " (")
+        InitialViewController.chosenIssue = parts[0]
+        
+    }
+    
+    override func viewDidLayoutSubviews() {
+        for segmentViews in IssueSelector.subviews {
+            for segmentLabel in segmentViews.subviews {
+                if segmentLabel is UILabel {
+                    (segmentLabel as! UILabel).numberOfLines = 0
+                }
+            }
+        }
+    }
     
     
 

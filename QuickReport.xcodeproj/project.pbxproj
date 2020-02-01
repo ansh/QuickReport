@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		363897F123E598B600C7E115 /* InitialViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 363897F023E598B600C7E115 /* InitialViewController.swift */; };
+		363897F323E5F0D800C7E115 /* DetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 363897F223E5F0D800C7E115 /* DetailViewController.swift */; };
 		36550E38236EE7EC00B982D4 /* SecondImageClassifier.mlmodel in Sources */ = {isa = PBXBuildFile; fileRef = 36550E37236EE7EC00B982D4 /* SecondImageClassifier.mlmodel */; };
 		36550E3A236EEC0000B982D4 /* ImageClassifier.mlmodel in Sources */ = {isa = PBXBuildFile; fileRef = 36550E39236EEC0000B982D4 /* ImageClassifier.mlmodel */; };
 		36592F0C236EC79A0000E713 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36592F0B236EC79A0000E713 /* AppDelegate.swift */; };
@@ -21,6 +22,7 @@
 
 /* Begin PBXFileReference section */
 		363897F023E598B600C7E115 /* InitialViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InitialViewController.swift; sourceTree = "<group>"; };
+		363897F223E5F0D800C7E115 /* DetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailViewController.swift; sourceTree = "<group>"; };
 		36550E37236EE7EC00B982D4 /* SecondImageClassifier.mlmodel */ = {isa = PBXFileReference; lastKnownFileType = file.mlmodel; path = SecondImageClassifier.mlmodel; sourceTree = "<group>"; };
 		36550E39236EEC0000B982D4 /* ImageClassifier.mlmodel */ = {isa = PBXFileReference; lastKnownFileType = file.mlmodel; path = ImageClassifier.mlmodel; sourceTree = "<group>"; };
 		36592F08236EC79A0000E713 /* QuickReport.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = QuickReport.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -75,6 +77,7 @@
 				36592F14236EC79C0000E713 /* Assets.xcassets */,
 				36592F16236EC79C0000E713 /* LaunchScreen.storyboard */,
 				363897F023E598B600C7E115 /* InitialViewController.swift */,
+				363897F223E5F0D800C7E115 /* DetailViewController.swift */,
 			);
 			path = QuickReport;
 			sourceTree = "<group>";
@@ -157,6 +160,7 @@
 				36550E38236EE7EC00B982D4 /* SecondImageClassifier.mlmodel in Sources */,
 				36592F0E236EC79A0000E713 /* SceneDelegate.swift in Sources */,
 				36550E3A236EEC0000B982D4 /* ImageClassifier.mlmodel in Sources */,
+				363897F323E5F0D800C7E115 /* DetailViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
