@@ -1,0 +1,464 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="15705" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="UBZ-4g-uSy">
+    <device id="retina5_5" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15706"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--View Controller-->
+        <scene sceneID="TmM-q7-Z5M">
+            <objects>
+                <viewController id="UBZ-4g-uSy" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="hyz-Nv-ESA">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="tLW-k0-sB5">
+                                <rect key="frame" x="82" y="243" width="250" height="250"/>
+                                <color key="backgroundColor" systemColor="systemGreenColor" red="0.20392156859999999" green="0.78039215689999997" blue="0.34901960780000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="250" id="QcE-cr-NfV"/>
+                                    <constraint firstAttribute="height" constant="250" id="XBH-cv-izx"/>
+                                </constraints>
+                                <state key="normal" image="camera-cropped"/>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                        <integer key="value" value="125"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
+                            </button>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="QuickReport" translatesAutoresizingMaskIntoConstraints="NO" id="Mzf-0K-mf3">
+                                <rect key="frame" x="20" y="20" width="207" height="69"/>
+                                <color key="backgroundColor" red="0.019607843140000001" green="0.019607843140000001" blue="0.019607843140000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" secondItem="Mzf-0K-mf3" secondAttribute="height" multiplier="3" id="heM-bT-7Xd"/>
+                                </constraints>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                        <integer key="value" value="10"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
+                            </imageView>
+                        </subviews>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <constraints>
+                            <constraint firstItem="Mzf-0K-mf3" firstAttribute="width" secondItem="hyz-Nv-ESA" secondAttribute="width" multiplier="0.5" id="KoV-Zb-gPg"/>
+                            <constraint firstItem="Mzf-0K-mf3" firstAttribute="top" secondItem="Jjm-9a-cvT" secondAttribute="top" constant="20" id="O6w-bc-YtM"/>
+                            <constraint firstItem="Mzf-0K-mf3" firstAttribute="leading" secondItem="Jjm-9a-cvT" secondAttribute="leading" constant="20" id="U0w-VI-DMv"/>
+                            <constraint firstItem="tLW-k0-sB5" firstAttribute="centerY" secondItem="hyz-Nv-ESA" secondAttribute="centerY" id="aLF-Im-4Nw"/>
+                            <constraint firstItem="tLW-k0-sB5" firstAttribute="centerX" secondItem="hyz-Nv-ESA" secondAttribute="centerX" id="eJg-RH-b2Z"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="Jjm-9a-cvT"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="E6i-bv-9JT" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-680" y="118"/>
+        </scene>
+        <!--View Controller-->
+        <scene sceneID="tne-QT-ifu">
+            <objects>
+                <viewController id="BYZ-38-t0r" customClass="ViewController" customModule="QuickReport" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="e8d-wp-ppn">
+                                <rect key="frame" x="20" y="118" width="374" height="500"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="500" id="Hqz-0R-51B"/>
+                                    <constraint firstAttribute="width" constant="374" id="pCr-KE-nk1"/>
+                                </constraints>
+                            </imageView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="4zo-LL-ugL">
+                                <rect key="frame" x="0.0" y="638" width="185" height="42"/>
+                                <color key="backgroundColor" systemColor="systemGreenColor" red="0.20392156859999999" green="0.78039215689999997" blue="0.34901960780000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="185" id="Mlm-FH-ZA7"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" name="KohinoorTelugu-Regular" family="Kohinoor Telugu" pointSize="21"/>
+                                <state key="normal" title="Take Photo">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                </state>
+                                <connections>
+                                    <action selector="takePhoto:" destination="BYZ-38-t0r" eventType="touchUpInside" id="AM5-fV-Z4f"/>
+                                </connections>
+                            </button>
+                            <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="INM-6l-nG8">
+                                <rect key="frame" x="229" y="638" width="185" height="42"/>
+                                <color key="backgroundColor" systemColor="systemGreenColor" red="0.20392156859999999" green="0.78039215689999997" blue="0.34901960780000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="185" id="BiY-rD-1n1"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" name="KohinoorTelugu-Regular" family="Kohinoor Telugu" pointSize="21"/>
+                                <color key="tintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <state key="normal" title="Next">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                </state>
+                                <connections>
+                                    <action selector="nextTapped:" destination="BYZ-38-t0r" eventType="touchUpInside" id="Ypf-dT-31F"/>
+                                </connections>
+                            </button>
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="kfw-El-Apm">
+                                <rect key="frame" x="307" y="29" width="0.0" height="0.0"/>
+                                <subviews>
+                                    <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="OUE-f3-WsV">
+                                        <rect key="frame" x="0.0" y="0.0" width="185" height="0.0"/>
+                                        <color key="backgroundColor" systemColor="systemGreenColor" red="0.20392156859999999" green="0.78039215689999997" blue="0.34901960780000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="185" id="tCJ-ol-r9Z"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" name="KohinoorTelugu-Regular" family="Kohinoor Telugu" pointSize="21"/>
+                                        <state key="normal">
+                                            <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        </state>
+                                        <connections>
+                                            <action selector="issueTapped:" destination="BYZ-38-t0r" eventType="touchUpInside" id="zlc-gI-wIr"/>
+                                        </connections>
+                                    </button>
+                                    <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Kd1-w1-y6y">
+                                        <rect key="frame" x="0.0" y="0.0" width="185" height="0.0"/>
+                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                        <state key="normal" title="Pothole">
+                                            <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        </state>
+                                        <connections>
+                                            <action selector="individualIssueTapped:" destination="BYZ-38-t0r" eventType="touchUpInside" id="yR0-oy-Sus"/>
+                                        </connections>
+                                    </button>
+                                    <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="sZD-2L-eo1">
+                                        <rect key="frame" x="0.0" y="0.0" width="185" height="0.0"/>
+                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                        <state key="normal" title="Litter">
+                                            <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        </state>
+                                        <connections>
+                                            <action selector="individualIssueTapped:" destination="BYZ-38-t0r" eventType="touchUpInside" id="NFM-DE-IvL"/>
+                                        </connections>
+                                    </button>
+                                    <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="keT-y8-eSZ">
+                                        <rect key="frame" x="0.0" y="0.0" width="185" height="0.0"/>
+                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                        <state key="normal" title="Traffic Signs">
+                                            <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        </state>
+                                        <connections>
+                                            <action selector="individualIssueTapped:" destination="BYZ-38-t0r" eventType="touchUpInside" id="h2n-3D-xQx"/>
+                                        </connections>
+                                    </button>
+                                    <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="rkM-Yb-H9h">
+                                        <rect key="frame" x="0.0" y="0.0" width="185" height="0.0"/>
+                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                        <state key="normal" title="Tree Blocks Signs">
+                                            <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        </state>
+                                        <connections>
+                                            <action selector="individualIssueTapped:" destination="BYZ-38-t0r" eventType="touchUpInside" id="j3B-mN-Fa2"/>
+                                        </connections>
+                                    </button>
+                                    <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="wnl-J1-wFd">
+                                        <rect key="frame" x="0.0" y="0.0" width="185" height="0.0"/>
+                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                        <state key="normal" title="Sidewalk Repair">
+                                            <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        </state>
+                                        <connections>
+                                            <action selector="individualIssueTapped:" destination="BYZ-38-t0r" eventType="touchUpInside" id="0He-cb-Tah"/>
+                                        </connections>
+                                    </button>
+                                    <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="jVm-lk-ed2">
+                                        <rect key="frame" x="0.0" y="0.0" width="185" height="0.0"/>
+                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                        <state key="normal" title="Graffiti">
+                                            <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        </state>
+                                        <connections>
+                                            <action selector="individualIssueTapped:" destination="BYZ-38-t0r" eventType="touchUpInside" id="LUe-24-fhg"/>
+                                        </connections>
+                                    </button>
+                                </subviews>
+                            </stackView>
+                        </subviews>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <constraints>
+                            <constraint firstItem="4zo-LL-ugL" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="4KE-vJ-0AB"/>
+                            <constraint firstItem="4zo-LL-ugL" firstAttribute="top" secondItem="e8d-wp-ppn" secondAttribute="bottom" constant="20" id="MVB-l7-qeZ"/>
+                            <constraint firstItem="e8d-wp-ppn" firstAttribute="centerY" secondItem="8bC-Xf-vdC" secondAttribute="centerY" id="YsJ-bd-nVk"/>
+                            <constraint firstItem="kfw-El-Apm" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="29" id="d8o-kD-VYe"/>
+                            <constraint firstItem="INM-6l-nG8" firstAttribute="top" secondItem="e8d-wp-ppn" secondAttribute="bottom" constant="20" id="ock-0b-Gzv"/>
+                            <constraint firstAttribute="trailing" secondItem="INM-6l-nG8" secondAttribute="trailing" id="rhh-d3-hH5"/>
+                            <constraint firstItem="e8d-wp-ppn" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="zLZ-ZI-uG9"/>
+                            <constraint firstItem="kfw-El-Apm" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" constant="100" id="zyb-SA-UVi"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
+                    </view>
+                    <connections>
+                        <outlet property="IssueButton" destination="OUE-f3-WsV" id="oXF-BB-jfj"/>
+                        <outlet property="NextButton" destination="INM-6l-nG8" id="pbz-Os-dDd"/>
+                        <outlet property="imageView" destination="e8d-wp-ppn" id="UeH-2g-USW"/>
+                        <outletCollection property="IssueCollection" destination="Kd1-w1-y6y" collectionClass="NSMutableArray" id="NZz-vq-ZPg"/>
+                        <outletCollection property="IssueCollection" destination="sZD-2L-eo1" collectionClass="NSMutableArray" id="JmM-pc-mnj"/>
+                        <outletCollection property="IssueCollection" destination="keT-y8-eSZ" collectionClass="NSMutableArray" id="rVw-aP-dSd"/>
+                        <outletCollection property="IssueCollection" destination="rkM-Yb-H9h" collectionClass="NSMutableArray" id="Yqc-ho-B5R"/>
+                        <outletCollection property="IssueCollection" destination="wnl-J1-wFd" collectionClass="NSMutableArray" id="pbT-bK-xBP"/>
+                        <outletCollection property="IssueCollection" destination="jVm-lk-ed2" collectionClass="NSMutableArray" id="2O9-6c-7fU"/>
+                        <segue destination="ZJq-rk-Kvs" kind="presentation" identifier="potholeSegue" animates="NO" modalPresentationStyle="fullScreen" id="yAf-dv-Uqf"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="137.68115942028987" y="115.7608695652174"/>
+        </scene>
+        <!--Pothole View Controller-->
+        <scene sceneID="SYh-3S-0u1">
+            <objects>
+                <viewController id="ZJq-rk-Kvs" customClass="PotholeViewController" customModule="QuickReport" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="oKX-XQ-ErA">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Repair Pothole" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5v4-ga-OhD">
+                                <rect key="frame" x="124.00000000000001" y="40" width="166.33333333333337" height="35"/>
+                                <fontDescription key="fontDescription" name="KohinoorTelugu-Regular" family="Kohinoor Telugu" pointSize="25"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Size?" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="oYA-mC-dml">
+                                <rect key="frame" x="30" y="100" width="180" height="28"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="180" id="y9n-V0-pQy"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" name="KohinoorTelugu-Regular" family="Kohinoor Telugu" pointSize="20"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Can it be safely avoided?" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="mZo-EJ-v53">
+                                <rect key="frame" x="30" y="278" width="180" height="56"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="180" id="Uk5-Oz-qea"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" name="KohinoorTelugu-Regular" family="Kohinoor Telugu" pointSize="20"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Are there multiple potholes?" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zcy-zH-SCH">
+                                <rect key="frame" x="30" y="484" width="180" height="56"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="180" id="198-qa-CCV"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" name="KohinoorTelugu-Regular" family="Kohinoor Telugu" pointSize="20"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="YgL-Rb-9XC">
+                                <rect key="frame" x="0.0" y="590" width="414" height="42"/>
+                                <color key="backgroundColor" systemColor="systemGreenColor" red="0.20392156859999999" green="0.78039215689999997" blue="0.34901960780000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <fontDescription key="fontDescription" name="KohinoorTelugu-Regular" family="Kohinoor Telugu" pointSize="21"/>
+                                <color key="tintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <state key="normal" title="Submit">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                </state>
+                                <connections>
+                                    <action selector="SubmitButton:" destination="ZJq-rk-Kvs" eventType="touchUpInside" id="MYp-BH-ADM"/>
+                                </connections>
+                            </button>
+                            <stackView opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="d1v-Dn-760">
+                                <rect key="frame" x="264" y="278" width="100" height="100"/>
+                                <subviews>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="CNW-Wr-XqQ">
+                                        <rect key="frame" x="0.0" y="0.0" width="100" height="42"/>
+                                        <color key="backgroundColor" systemColor="systemGreenColor" red="0.20392156859999999" green="0.78039215689999997" blue="0.34901960780000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <fontDescription key="fontDescription" name="KohinoorTelugu-Regular" family="Kohinoor Telugu" pointSize="21"/>
+                                        <state key="normal" title="Yes">
+                                            <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        </state>
+                                        <connections>
+                                            <action selector="SafePickerPressed:" destination="ZJq-rk-Kvs" eventType="touchUpInside" id="8Dv-0o-PzV"/>
+                                            <action selector="issueTapped:" destination="BYZ-38-t0r" eventType="touchUpInside" id="zKX-Bk-XWS"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="xok-kQ-o0y">
+                                        <rect key="frame" x="0.0" y="42" width="100" height="29"/>
+                                        <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                        <state key="normal" title="Yes">
+                                            <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        </state>
+                                        <connections>
+                                            <action selector="SafePicked:" destination="ZJq-rk-Kvs" eventType="touchUpInside" id="6RX-kz-HN8"/>
+                                            <action selector="individualIssueTapped:" destination="BYZ-38-t0r" eventType="touchUpInside" id="I7G-eI-swF"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="5Kz-XU-ETg">
+                                        <rect key="frame" x="0.0" y="71" width="100" height="29"/>
+                                        <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                        <state key="normal" title="No">
+                                            <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        </state>
+                                        <connections>
+                                            <action selector="SafePicked:" destination="ZJq-rk-Kvs" eventType="touchUpInside" id="sgL-qv-a32"/>
+                                            <action selector="individualIssueTapped:" destination="BYZ-38-t0r" eventType="touchUpInside" id="VDt-6u-Zga"/>
+                                        </connections>
+                                    </button>
+                                </subviews>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="100" id="ud1-Ss-9AK"/>
+                                </constraints>
+                            </stackView>
+                            <stackView opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="ysb-Xw-0a7">
+                                <rect key="frame" x="264" y="484" width="100" height="100"/>
+                                <subviews>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="6bP-N2-3vp">
+                                        <rect key="frame" x="0.0" y="0.0" width="100" height="42"/>
+                                        <color key="backgroundColor" systemColor="systemGreenColor" red="0.20392156859999999" green="0.78039215689999997" blue="0.34901960780000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <fontDescription key="fontDescription" name="KohinoorTelugu-Regular" family="Kohinoor Telugu" pointSize="21"/>
+                                        <state key="normal" title="Yes">
+                                            <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        </state>
+                                        <connections>
+                                            <action selector="MultiplePickerPressed:" destination="ZJq-rk-Kvs" eventType="touchUpInside" id="aMU-Up-q1o"/>
+                                            <action selector="issueTapped:" destination="BYZ-38-t0r" eventType="touchUpInside" id="o66-ZN-Ri9"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="5dy-FS-NHg">
+                                        <rect key="frame" x="0.0" y="42" width="100" height="29"/>
+                                        <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                        <state key="normal" title="Yes">
+                                            <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        </state>
+                                        <connections>
+                                            <action selector="MultiplePicked:" destination="ZJq-rk-Kvs" eventType="touchUpInside" id="rbi-4h-wO8"/>
+                                            <action selector="individualIssueTapped:" destination="BYZ-38-t0r" eventType="touchUpInside" id="Koh-go-Pcl"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Q57-50-3Sg">
+                                        <rect key="frame" x="0.0" y="71" width="100" height="29"/>
+                                        <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                        <state key="normal" title="No">
+                                            <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        </state>
+                                        <connections>
+                                            <action selector="MultiplePicked:" destination="ZJq-rk-Kvs" eventType="touchUpInside" id="6ls-J5-xuP"/>
+                                            <action selector="individualIssueTapped:" destination="BYZ-38-t0r" eventType="touchUpInside" id="89q-Gl-Pl2"/>
+                                        </connections>
+                                    </button>
+                                </subviews>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="100" id="53Q-ks-BdF"/>
+                                </constraints>
+                            </stackView>
+                            <stackView opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="OTe-zR-bVA">
+                                <rect key="frame" x="264" y="100" width="100" height="129"/>
+                                <subviews>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="cqq-2T-gE7">
+                                        <rect key="frame" x="0.0" y="0.0" width="100" height="42"/>
+                                        <color key="backgroundColor" systemColor="systemGreenColor" red="0.20392156859999999" green="0.78039215689999997" blue="0.34901960780000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <fontDescription key="fontDescription" name="KohinoorTelugu-Regular" family="Kohinoor Telugu" pointSize="21"/>
+                                        <state key="normal" title="Small">
+                                            <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        </state>
+                                        <connections>
+                                            <action selector="SizePickerPressed:" destination="ZJq-rk-Kvs" eventType="touchUpInside" id="SdU-dm-834"/>
+                                            <action selector="issueTapped:" destination="BYZ-38-t0r" eventType="touchUpInside" id="KZz-ET-l0W"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="xbo-Pm-Dlk">
+                                        <rect key="frame" x="0.0" y="42" width="100" height="29"/>
+                                        <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                        <state key="normal" title="Small">
+                                            <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        </state>
+                                        <connections>
+                                            <action selector="SizePicked:" destination="ZJq-rk-Kvs" eventType="touchUpInside" id="uJc-xb-kKm"/>
+                                            <action selector="individualIssueTapped:" destination="BYZ-38-t0r" eventType="touchUpInside" id="MaD-TD-egL"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="84T-sd-Bz8">
+                                        <rect key="frame" x="0.0" y="71" width="100" height="29"/>
+                                        <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                        <state key="normal" title="Medium">
+                                            <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        </state>
+                                        <connections>
+                                            <action selector="SizePicked:" destination="ZJq-rk-Kvs" eventType="touchUpInside" id="8Qe-BU-ZKa"/>
+                                            <action selector="individualIssueTapped:" destination="BYZ-38-t0r" eventType="touchUpInside" id="D2D-Vq-jaj"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="F7R-Mt-fpF">
+                                        <rect key="frame" x="0.0" y="100" width="100" height="29"/>
+                                        <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                        <state key="normal" title="Large">
+                                            <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        </state>
+                                        <connections>
+                                            <action selector="SizePicked:" destination="ZJq-rk-Kvs" eventType="touchUpInside" id="sgX-Hy-LZV"/>
+                                            <action selector="individualIssueTapped:" destination="BYZ-38-t0r" eventType="touchUpInside" id="H8C-01-PG0"/>
+                                        </connections>
+                                    </button>
+                                </subviews>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="100" id="OEl-aL-rCH"/>
+                                </constraints>
+                            </stackView>
+                        </subviews>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <constraints>
+                            <constraint firstItem="YgL-Rb-9XC" firstAttribute="centerX" secondItem="oKX-XQ-ErA" secondAttribute="centerX" id="4wP-PJ-YHQ"/>
+                            <constraint firstItem="OTe-zR-bVA" firstAttribute="top" secondItem="oYA-mC-dml" secondAttribute="top" id="6T5-2Y-Udu"/>
+                            <constraint firstItem="YgL-Rb-9XC" firstAttribute="top" secondItem="zcy-zH-SCH" secondAttribute="bottom" constant="50" id="BJs-oP-OMV"/>
+                            <constraint firstItem="mZo-EJ-v53" firstAttribute="leading" secondItem="YS3-Cu-s7H" secondAttribute="leading" constant="30" id="CKj-wx-UGk"/>
+                            <constraint firstItem="oYA-mC-dml" firstAttribute="leading" secondItem="YS3-Cu-s7H" secondAttribute="leading" constant="30" id="CrQ-a0-aDn"/>
+                            <constraint firstItem="zcy-zH-SCH" firstAttribute="leading" secondItem="YS3-Cu-s7H" secondAttribute="leading" constant="30" id="E8c-f8-tg7"/>
+                            <constraint firstItem="d1v-Dn-760" firstAttribute="top" secondItem="mZo-EJ-v53" secondAttribute="top" id="I1P-uz-6gV"/>
+                            <constraint firstItem="YgL-Rb-9XC" firstAttribute="leading" secondItem="YS3-Cu-s7H" secondAttribute="leading" id="KQV-Gp-IC2"/>
+                            <constraint firstItem="ysb-Xw-0a7" firstAttribute="top" secondItem="zcy-zH-SCH" secondAttribute="top" id="Lkq-GC-70C"/>
+                            <constraint firstItem="mZo-EJ-v53" firstAttribute="top" secondItem="oYA-mC-dml" secondAttribute="bottom" constant="150" id="Ozy-LN-MyS"/>
+                            <constraint firstItem="oYA-mC-dml" firstAttribute="top" secondItem="YS3-Cu-s7H" secondAttribute="top" constant="100" id="PX6-Xr-biF"/>
+                            <constraint firstItem="YS3-Cu-s7H" firstAttribute="trailing" secondItem="ysb-Xw-0a7" secondAttribute="trailing" constant="50" id="QdZ-pE-vD2"/>
+                            <constraint firstItem="5v4-ga-OhD" firstAttribute="centerX" secondItem="oKX-XQ-ErA" secondAttribute="centerX" id="ikP-pj-Cif"/>
+                            <constraint firstItem="YS3-Cu-s7H" firstAttribute="trailing" secondItem="YgL-Rb-9XC" secondAttribute="trailing" id="mRv-If-AX9"/>
+                            <constraint firstItem="zcy-zH-SCH" firstAttribute="top" secondItem="mZo-EJ-v53" secondAttribute="bottom" constant="150" id="n96-C2-6MH"/>
+                            <constraint firstItem="5v4-ga-OhD" firstAttribute="top" secondItem="YS3-Cu-s7H" secondAttribute="top" constant="40" id="nko-ec-IgD"/>
+                            <constraint firstItem="YS3-Cu-s7H" firstAttribute="trailing" secondItem="d1v-Dn-760" secondAttribute="trailing" constant="50" id="p8Y-eM-OQD"/>
+                            <constraint firstItem="YS3-Cu-s7H" firstAttribute="trailing" secondItem="OTe-zR-bVA" secondAttribute="trailing" constant="50" id="tJS-3B-TLA"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="YS3-Cu-s7H"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="IIp-Gy-Kzr"/>
+                    <connections>
+                        <outlet property="MultiplePicker" destination="6bP-N2-3vp" id="BlP-u8-HTK"/>
+                        <outlet property="SafePicker" destination="CNW-Wr-XqQ" id="4l1-YQ-U2v"/>
+                        <outlet property="SizePicker" destination="cqq-2T-gE7" id="URZ-Wg-wQY"/>
+                        <outletCollection property="SizeElements" destination="xbo-Pm-Dlk" collectionClass="NSMutableArray" id="x26-fb-YsP"/>
+                        <outletCollection property="SizeElements" destination="84T-sd-Bz8" collectionClass="NSMutableArray" id="m0T-aN-BK1"/>
+                        <outletCollection property="SizeElements" destination="F7R-Mt-fpF" collectionClass="NSMutableArray" id="XIl-IT-hj5"/>
+                        <outletCollection property="SafeElements" destination="xok-kQ-o0y" collectionClass="NSMutableArray" id="Cmg-r2-le5"/>
+                        <outletCollection property="SafeElements" destination="5Kz-XU-ETg" collectionClass="NSMutableArray" id="BiB-Y8-rnD"/>
+                        <outletCollection property="MultipleElements" destination="5dy-FS-NHg" collectionClass="NSMutableArray" id="91V-AH-3EP"/>
+                        <outletCollection property="MultipleElements" destination="Q57-50-3Sg" collectionClass="NSMutableArray" id="t6D-tV-lZg"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="wlr-2G-mVX" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1028.985507246377" y="485.86956521739137"/>
+        </scene>
+    </scenes>
+    <resources>
+        <image name="QuickReport" width="1214" height="172"/>
+        <image name="camera-cropped" width="366.66665649414062" height="366.66665649414062"/>
+    </resources>
+</document>
