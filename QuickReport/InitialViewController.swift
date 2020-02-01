@@ -99,7 +99,7 @@ class InitialViewController: UIViewController, UINavigationControllerDelegate, U
             return
         }
          
-        let myMap = ["CICAgICAgL23IBINcG90aG9sZXJlcGFpcg==" : "Pothole", "CICAgICAgP20LRINbGl0dGVycmVtb3ZhbA==" : "Litter", "CICAgICAgP3kMRIMdHJhZmZpY3NpZ25z" : "Traffic Signal Repair", "CICAgICAgP3EXxIRdHJlZWJsb2NraW5nc2lnbnM=" : "Tree Blocks Signs", "CICAgICAgP3UVxIOc2lkZXdhbGtyZXBhaXI=" : "Sidewalk Repair", "CICAgICAgP2UahIIR3JhZmZpdGk=" : "Graffiti"]
+        let myMap = ["CICAgICAgL23IBINcG90aG9sZXJlcGFpcg==" : "Pothole", "CICAgICAgP20LRINbGl0dGVycmVtb3ZhbA==" : "Litter", "CICAgICAgP3kMRIMdHJhZmZpY3NpZ25z" : "Traffic Signal Repair", "CICAgICAgP3EXxIRdHJlZWJsb2NraW5nc2lnbnM=" : "Fallen Trees", "CICAgICAgP3UVxIOc2lkZXdhbGtyZXBhaXI=" : "Sidewalk Repair", "CICAgICAgP2UahIIR3JhZmZpdGk=" : "Graffiti"]
         
         let sorted = Array(prediction.scores__0.sorted{$0.1 > $1.1})
         
