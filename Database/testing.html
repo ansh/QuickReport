@@ -14,8 +14,8 @@
         padding: 0;
       }
       img {
-        max-width: 200%;
-        max-height: 300%;
+        max-width: 100%;
+        max-height: 100%;
         margin: 30;
         padding: 50;
       }
@@ -38,15 +38,28 @@
 
         var infowindow = new google.maps.InfoWindow();
 
-        var text = '{ "Graffiti": [{ "name": "Graffiti", "address": "N Highland St., Arlington, VA 22201", "park": "Lyons Park", "describe": "ignore", "picture": "https://i.ibb.co/vLhhWGt/google.jpg", "latitude": 12, "longitude": 33 }], "Litter": [{}], "Fallen Tree": [{ "name": "Fallen Tree", "address": "N Highland St., Arlington, VA 22201", "park": "Lyons Park", "contact": "4072342343", "describe": "ignore", "picture": "https://i.ibb.co/vLhhWGt/google.jpg", "latitude": -10, "longitude": 37 }, { "name": "Fallen Tree", "address": "N Highland St., Arlington, VA 22201", "park": "Lyons Park", "contact": "4072342343", "describe": "ignore", "picture": "https://i.ibb.co/vLhhWGt/google.jpg", "latitude": -34, "longitude": 75 }, { "name": "Fallen Tree", "address": "N Highland St., Arlington, VA 22201", "park": "Lyons Park", "contact": "4072342343", "describe": "ignore", "picture": "https://i.ibb.co/vLhhWGt/google.jpg", "latitude": -70, "longitude": 5 }], "Pothole": [{}], "Sidewalk Repair": [{}] }';
+        var xhr = new XMLHttpRequest();
+        xhr.open('GET', "https://quicker-report.herokuapp.com/getdata", true);
+        xhr.send();
 
-        var json = JSON.parse(text);
+        xhr.onreadystatechange = processRequest;
 
-        console.log(json);
-        for(var key in json) // issue name (i.e. Fallen Tree)
+        function processRequest(e) {
+        	if (xhr.readyState == 4 && xhr.status == 200) {
+        		var response = JSON.parse(xhr.responseText);
+        	}
+        }
+
+
+        //var text = '{ "Graffiti": [{ "name": "Graffiti", "address": "N Highland St., Arlington, VA 22201", "describe": "ignore", "picture": "https://i.ibb.co/vLhhWGt/google.jpg", "latitude": 12, "longitude": 33 }], "Litter": [{}], "Fallen Tree": [{ "name": "Fallen Tree", "address": "N Highland St., Arlington, VA 22201", "park": "Lyons Park", "contact": "4072342343", "describe": "ignore", "picture": "https://i.ibb.co/vLhhWGt/google.jpg", "latitude": -10, "longitude": 37 }, { "name": "Fallen Tree", "address": "N Highland St., Arlington, VA 22201", "park": "Lyons Park", "contact": "4072342343", "describe": "ignore", "picture": "https://i.ibb.co/vLhhWGt/google.jpg", "latitude": -34, "longitude": 75 }, { "name": "Fallen Tree", "address": "N Highland St., Arlington, VA 22201", "park": "Lyons Park", "contact": "4072342343", "describe": "ignore", "picture": "https://i.ibb.co/vLhhWGt/google.jpg", "latitude": -70, "longitude": 5 }], "Pothole": [{}], "Sidewalk Repair": [{}] }';
+
+        //var json = JSON.parse(text);
+
+        console.log(response);
+        for(var key in response) // issue name (i.e. Fallen Tree)
         {
           console.log("printing " + key);
-          var val = json[key]; // i.e. array of all fallen trees
+          var val = response[key]; // i.e. array of all fallen trees
           console.log(val);
           for(var i = 0; i < val.length; i++)
           {
@@ -54,7 +67,7 @@
             console.log(observation);
             var name = observation['name'];
             var address = observation['address'];
-            var park;
+            var park = "";
             if(observation.hasOwnProperty('park'))
             {
               park = observation['park'];
@@ -64,21 +77,21 @@
             var lat = observation['latitude'];
             var long = observation['longitude'];
             var latLng = new google.maps.LatLng(lat, long);
-            var infowindow = new google.maps.InfoWindow({
-              content: 'hello'//'<div><IMG ' + picture + '><br><b>' + name + '</b><br/>' + address + '</div>'
-              });
+
+
+            var content = '<div><img><IMG SRC = "' + picture + '"></img><br><b>' + name + '</b><br/>' + address + '<br/>' + describe + '<br/>' + park + '<br/></div>';
             var marker = new google.maps.Marker({
               position: latLng,
               map: map,
               title: lat + ""
             });
 
-            google.maps.event.addListener(marker, 'click', (function (marker, i) {
-                 return function () {
-                     infowindow.setContent(lat + "");
-                     infowindow.open(map, marker);
-                 }
-            })(marker, i));
+            google.maps.event.addListener(marker,'click', (function(marker,content,infowindow){
+              return function() {
+                  infowindow.setContent(content);
+                  infowindow.open(map,marker);
+              };
+            })(marker,content,infowindow));
             marker.setMap(map);
           }
         }
