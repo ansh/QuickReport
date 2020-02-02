@@ -8,7 +8,10 @@
 
 /* Begin PBXBuildFile section */
 		363897F123E598B600C7E115 /* InitialViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 363897F023E598B600C7E115 /* InitialViewController.swift */; };
-		363897F323E5F0D800C7E115 /* DetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 363897F223E5F0D800C7E115 /* DetailViewController.swift */; };
+		363897F523E6365700C7E115 /* NewModel.mlmodel in Sources */ = {isa = PBXBuildFile; fileRef = 363897F423E6365700C7E115 /* NewModel.mlmodel */; };
+		363897F723E6A2DE00C7E115 /* NotificationAlert.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 363897F623E6A2DE00C7E115 /* NotificationAlert.storyboard */; };
+		363897F923E6A44100C7E115 /* NotificationAlertViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 363897F823E6A44100C7E115 /* NotificationAlertViewController.swift */; };
+		363897FB23E6A47000C7E115 /* NotificationAlertService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 363897FA23E6A47000C7E115 /* NotificationAlertService.swift */; };
 		36550E38236EE7EC00B982D4 /* SecondImageClassifier.mlmodel in Sources */ = {isa = PBXBuildFile; fileRef = 36550E37236EE7EC00B982D4 /* SecondImageClassifier.mlmodel */; };
 		36550E3A236EEC0000B982D4 /* ImageClassifier.mlmodel in Sources */ = {isa = PBXBuildFile; fileRef = 36550E39236EEC0000B982D4 /* ImageClassifier.mlmodel */; };
 		36592F0C236EC79A0000E713 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36592F0B236EC79A0000E713 /* AppDelegate.swift */; };
@@ -16,13 +19,15 @@
 		36592F13236EC79A0000E713 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 36592F11236EC79A0000E713 /* Main.storyboard */; };
 		36592F15236EC79C0000E713 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 36592F14236EC79C0000E713 /* Assets.xcassets */; };
 		36592F18236EC79C0000E713 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 36592F16236EC79C0000E713 /* LaunchScreen.storyboard */; };
-		36B4825F236F2AA7003FCAF0 /* PotholeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36B4825E236F2AA7003FCAF0 /* PotholeViewController.swift */; };
 		E119BDB523E5A5E6006A7DFA /* FormViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E119BDB423E5A5E6006A7DFA /* FormViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		363897F023E598B600C7E115 /* InitialViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InitialViewController.swift; sourceTree = "<group>"; };
-		363897F223E5F0D800C7E115 /* DetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailViewController.swift; sourceTree = "<group>"; };
+		363897F423E6365700C7E115 /* NewModel.mlmodel */ = {isa = PBXFileReference; lastKnownFileType = file.mlmodel; path = NewModel.mlmodel; sourceTree = "<group>"; };
+		363897F623E6A2DE00C7E115 /* NotificationAlert.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = NotificationAlert.storyboard; sourceTree = "<group>"; };
+		363897F823E6A44100C7E115 /* NotificationAlertViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationAlertViewController.swift; sourceTree = "<group>"; };
+		363897FA23E6A47000C7E115 /* NotificationAlertService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationAlertService.swift; sourceTree = "<group>"; };
 		36550E37236EE7EC00B982D4 /* SecondImageClassifier.mlmodel */ = {isa = PBXFileReference; lastKnownFileType = file.mlmodel; path = SecondImageClassifier.mlmodel; sourceTree = "<group>"; };
 		36550E39236EEC0000B982D4 /* ImageClassifier.mlmodel */ = {isa = PBXFileReference; lastKnownFileType = file.mlmodel; path = ImageClassifier.mlmodel; sourceTree = "<group>"; };
 		36592F08236EC79A0000E713 /* QuickReport.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = QuickReport.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -32,7 +37,6 @@
 		36592F14236EC79C0000E713 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		36592F17236EC79C0000E713 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		36592F19236EC79C0000E713 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		36B4825E236F2AA7003FCAF0 /* PotholeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PotholeViewController.swift; sourceTree = "<group>"; };
 		E119BDB423E5A5E6006A7DFA /* FormViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FormViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -52,6 +56,7 @@
 			children = (
 				36550E39236EEC0000B982D4 /* ImageClassifier.mlmodel */,
 				36550E37236EE7EC00B982D4 /* SecondImageClassifier.mlmodel */,
+				363897F423E6365700C7E115 /* NewModel.mlmodel */,
 				36592F0A236EC79A0000E713 /* QuickReport */,
 				36592F09236EC79A0000E713 /* Products */,
 			);
@@ -70,14 +75,15 @@
 			children = (
 				36592F19236EC79C0000E713 /* Info.plist */,
 				36592F0B236EC79A0000E713 /* AppDelegate.swift */,
-				36B4825E236F2AA7003FCAF0 /* PotholeViewController.swift */,
 				36592F0D236EC79A0000E713 /* SceneDelegate.swift */,
 				36592F11236EC79A0000E713 /* Main.storyboard */,
 				E119BDB423E5A5E6006A7DFA /* FormViewController.swift */,
 				36592F14236EC79C0000E713 /* Assets.xcassets */,
 				36592F16236EC79C0000E713 /* LaunchScreen.storyboard */,
 				363897F023E598B600C7E115 /* InitialViewController.swift */,
-				363897F223E5F0D800C7E115 /* DetailViewController.swift */,
+				363897F623E6A2DE00C7E115 /* NotificationAlert.storyboard */,
+				363897F823E6A44100C7E115 /* NotificationAlertViewController.swift */,
+				363897FA23E6A47000C7E115 /* NotificationAlertService.swift */,
 			);
 			path = QuickReport;
 			sourceTree = "<group>";
@@ -142,6 +148,7 @@
 			files = (
 				36592F18236EC79C0000E713 /* LaunchScreen.storyboard in Resources */,
 				36592F15236EC79C0000E713 /* Assets.xcassets in Resources */,
+				363897F723E6A2DE00C7E115 /* NotificationAlert.storyboard in Resources */,
 				36592F13236EC79A0000E713 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -153,14 +160,15 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				36B4825F236F2AA7003FCAF0 /* PotholeViewController.swift in Sources */,
 				363897F123E598B600C7E115 /* InitialViewController.swift in Sources */,
 				E119BDB523E5A5E6006A7DFA /* FormViewController.swift in Sources */,
 				36592F0C236EC79A0000E713 /* AppDelegate.swift in Sources */,
+				363897FB23E6A47000C7E115 /* NotificationAlertService.swift in Sources */,
 				36550E38236EE7EC00B982D4 /* SecondImageClassifier.mlmodel in Sources */,
 				36592F0E236EC79A0000E713 /* SceneDelegate.swift in Sources */,
 				36550E3A236EEC0000B982D4 /* ImageClassifier.mlmodel in Sources */,
-				363897F323E5F0D800C7E115 /* DetailViewController.swift in Sources */,
+				363897F923E6A44100C7E115 /* NotificationAlertViewController.swift in Sources */,
+				363897F523E6365700C7E115 /* NewModel.mlmodel in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

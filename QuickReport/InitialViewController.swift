@@ -20,20 +20,34 @@ class InitialViewController: UIViewController, UINavigationControllerDelegate, U
     @IBOutlet weak var TextLabel: UILabel!
     
     var imagePicker: UIImagePickerController!
-    var model: SecondImageClassifier!
+    var model: NewModel!
     
     static var chosenIssue = ""
+    static var address = ""
     
     var currentIssueIndex = -1
     
-    let myShortenedIssues = ["Pothole", "Litter", "Traffic Signs", "Tree Blocks Signs", "Sidewalk Repair", "Graffiti"]
+    let myShortenedIssues = ["Pothole", "Litter", "Fallen Tree", "Sidewalk Repair", "Graffiti"]
     
     
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        model = SecondImageClassifier()
+        model = NewModel()
+        
+        
         // Do any additional setup after loading the view.
+    }
+    
+
+    
+    func successNotification(alertMessage: String, success: Bool)
+    {
+        print("in notification")
+        let alertService = NotificationAlertService()
+        let alert = alertService.alert(myTitle: alertMessage, success: success)
+        self.present(alert, animated: true, completion: nil)
+        // ask again - no input
     }
     
     func showButtons()
@@ -61,8 +75,6 @@ class InitialViewController: UIViewController, UINavigationControllerDelegate, U
     }
     
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
-        
-        
         imagePicker.dismiss(animated: true, completion: nil)
         imageView.image = info[.originalImage] as? UIImage // retrieve image
         
@@ -99,9 +111,13 @@ class InitialViewController: UIViewController, UINavigationControllerDelegate, U
             return
         }
          
-        let myMap = ["CICAgICAgL23IBINcG90aG9sZXJlcGFpcg==" : "Pothole", "CICAgICAgP20LRINbGl0dGVycmVtb3ZhbA==" : "Litter", "CICAgICAgP3kMRIMdHJhZmZpY3NpZ25z" : "Traffic Signal Repair", "CICAgICAgP3EXxIRdHJlZWJsb2NraW5nc2lnbnM=" : "Fallen Trees", "CICAgICAgP3UVxIOc2lkZXdhbGtyZXBhaXI=" : "Sidewalk Repair", "CICAgICAgP2UahIIR3JhZmZpdGk=" : "Graffiti"]
+        
+        let myMap = ["CICAgICAgL23IBINcG90aG9sZXJlcGFpcg==" : "Pothole", "CICAgICAgP20LRINbGl0dGVycmVtb3ZhbA==" : "Litter", "CICAgICAwJzfHxILZmFsbGVudHJlZXM=" : "Fallen Tree", "CICAgICAgP3UVxIOc2lkZXdhbGtyZXBhaXI=" : "Sidewalk Repair", "CICAgICAgP2UahIIR3JhZmZpdGk=" : "Graffiti"]
         
         let sorted = Array(prediction.scores__0.sorted{$0.1 > $1.1})
+        print(sorted)
+        
+        print(sorted[0])
         
         IssueSelector.selectedSegmentIndex = 0
         
@@ -115,6 +131,23 @@ class InitialViewController: UIViewController, UINavigationControllerDelegate, U
         }
         
         showButtons()
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(true)
+        
+        if(FormViewController.transitioned)
+        {
+            if(FormViewController.success)
+            {
+                self.successNotification(alertMessage: "Submission successful!", success: true)
+            }
+            else
+            {
+                self.successNotification(alertMessage: "Submission failed", success: false)
+            }
+            FormViewController.transitioned = false
+        }
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {

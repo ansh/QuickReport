@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="15705" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15706"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--Notification Alert View Controller-->
+        <scene sceneID="SuE-HZ-Odt">
+            <objects>
+                <viewController storyboardIdentifier="NotificationAlertVC" useStoryboardIdentifierAsRestorationIdentifier="YES" id="1Jc-hu-QfG" customClass="NotificationAlertViewController" customModule="QuickReport" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="526-2g-WMR">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="gdZ-9d-Pmp">
+                                <rect key="frame" x="27" y="298" width="360" height="160"/>
+                                <subviews>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="rok-0Q-4yl">
+                                        <rect key="frame" x="0.0" y="0.0" width="360" height="80"/>
+                                        <subviews>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Submission successful!" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" minimumFontSize="8" adjustsFontForContentSizeCategory="YES" translatesAutoresizingMaskIntoConstraints="NO" id="tWZ-sk-FvX">
+                                                <rect key="frame" x="20" y="19" width="320" height="42"/>
+                                                <fontDescription key="fontDescription" name="KohinoorTelugu-Medium" family="Kohinoor Telugu" pointSize="30"/>
+                                                <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                        </subviews>
+                                        <color key="backgroundColor" red="0.0" green="0.68627450980000004" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <constraints>
+                                            <constraint firstAttribute="trailing" secondItem="tWZ-sk-FvX" secondAttribute="trailing" constant="20" id="5dZ-oz-3ny"/>
+                                            <constraint firstItem="tWZ-sk-FvX" firstAttribute="centerX" secondItem="rok-0Q-4yl" secondAttribute="centerX" id="8uK-LQ-2vA"/>
+                                            <constraint firstItem="tWZ-sk-FvX" firstAttribute="leading" secondItem="rok-0Q-4yl" secondAttribute="leading" constant="20" id="Ev1-D0-Hqf"/>
+                                            <constraint firstItem="tWZ-sk-FvX" firstAttribute="centerY" secondItem="rok-0Q-4yl" secondAttribute="centerY" id="QFA-eY-ZyE"/>
+                                            <constraint firstAttribute="height" constant="80" id="wWH-uz-ms1"/>
+                                        </constraints>
+                                        <userDefinedRuntimeAttributes>
+                                            <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                                <integer key="value" value="10"/>
+                                            </userDefinedRuntimeAttribute>
+                                        </userDefinedRuntimeAttributes>
+                                    </view>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="IES-CK-egc">
+                                        <rect key="frame" x="115" y="90" width="130" height="60"/>
+                                        <color key="backgroundColor" systemColor="systemGrayColor" red="0.5568627451" green="0.5568627451" blue="0.57647058819999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="130" id="eqj-zy-Ep7"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" name="KohinoorTelugu-Medium" family="Kohinoor Telugu" pointSize="29"/>
+                                        <state key="normal" title="OK">
+                                            <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        </state>
+                                        <userDefinedRuntimeAttributes>
+                                            <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                                <integer key="value" value="10"/>
+                                            </userDefinedRuntimeAttribute>
+                                        </userDefinedRuntimeAttributes>
+                                        <connections>
+                                            <action selector="OKPressed:" destination="1Jc-hu-QfG" eventType="touchUpInside" id="vTY-9E-odk"/>
+                                        </connections>
+                                    </button>
+                                </subviews>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                <accessibility key="accessibilityConfiguration">
+                                    <accessibilityTraits key="traits" allowsDirectInteraction="YES"/>
+                                </accessibility>
+                                <constraints>
+                                    <constraint firstItem="IES-CK-egc" firstAttribute="top" secondItem="rok-0Q-4yl" secondAttribute="bottom" constant="10" id="442-Na-1Bo"/>
+                                    <constraint firstItem="rok-0Q-4yl" firstAttribute="leading" secondItem="gdZ-9d-Pmp" secondAttribute="leading" id="6ty-8u-ZRq"/>
+                                    <constraint firstAttribute="bottom" secondItem="IES-CK-egc" secondAttribute="bottom" constant="10" id="7nA-rY-ZDu"/>
+                                    <constraint firstItem="IES-CK-egc" firstAttribute="centerX" secondItem="gdZ-9d-Pmp" secondAttribute="centerX" id="KKf-jw-mBl"/>
+                                    <constraint firstItem="rok-0Q-4yl" firstAttribute="centerX" secondItem="gdZ-9d-Pmp" secondAttribute="centerX" id="VQW-bS-VPs"/>
+                                    <constraint firstItem="rok-0Q-4yl" firstAttribute="top" secondItem="gdZ-9d-Pmp" secondAttribute="top" id="gPN-oB-11f"/>
+                                    <constraint firstAttribute="trailing" secondItem="rok-0Q-4yl" secondAttribute="trailing" id="iHw-KI-kfs"/>
+                                    <constraint firstItem="IES-CK-egc" firstAttribute="height" secondItem="gdZ-9d-Pmp" secondAttribute="height" multiplier="0.375" id="pmG-Bk-pKr"/>
+                                </constraints>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                        <integer key="value" value="10"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
+                            </view>
+                        </subviews>
+                        <constraints>
+                            <constraint firstItem="gdZ-9d-Pmp" firstAttribute="width" relation="lessThanOrEqual" secondItem="526-2g-WMR" secondAttribute="width" multiplier="0.87" id="RNp-nu-phK"/>
+                            <constraint firstItem="gdZ-9d-Pmp" firstAttribute="centerX" secondItem="526-2g-WMR" secondAttribute="centerX" id="SGd-C1-2CN"/>
+                            <constraint firstItem="gdZ-9d-Pmp" firstAttribute="width" relation="greaterThanOrEqual" secondItem="526-2g-WMR" secondAttribute="width" multiplier="0.3" id="Tq0-Md-4vp"/>
+                            <constraint firstItem="gdZ-9d-Pmp" firstAttribute="centerY" secondItem="526-2g-WMR" secondAttribute="centerY" constant="-70" id="xnE-M3-svd"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="aXR-Kg-6Tv"/>
+                    </view>
+                    <connections>
+                        <outlet property="NotifTitle" destination="tWZ-sk-FvX" id="6cF-8z-xQl"/>
+                        <outlet property="NotifView" destination="rok-0Q-4yl" id="GlL-a1-Er6"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="LwE-3b-gXb" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="143.47826086956522" y="39.130434782608695"/>
+        </scene>
+    </scenes>
+</document>
