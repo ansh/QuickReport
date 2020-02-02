@@ -1,9 +1,6 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>Simple Map</title>
-    <meta name="viewport" content="initial-scale=1.0">
-    <meta charset="utf-8">
     <style>
       /* Always set the map height explicitly to define the size of the div
        * element that contains the map. */
@@ -13,46 +10,72 @@
       /* Optional: Makes the sample page fill the window. */
       html, body {
         height: 100%;
-        margin: 0;
+        margin: 0 auto;
         padding: 0;
+      }
+      img {
+        max-width: 200%;
+        max-height: 300%;
+        margin: 30;
+        padding: 50;
+      }
+      text {
+        position: absolute;
+        left: 50%;
+        transform: translate(-50%);
       }
     </style>
   </head>
   <body>
     <div id="map"></div>
-    <script src="allData.json">
-    console.log(allData);
-  var data = JSON.parse(allData);
-console.log(data)</script>
     <script>
+      var map;
       function initMap() {
-        var myLatLng = {lat: 38.882292, lng: -77.104661};
-
-        var map = new google.maps.Map(document.getElementById('map'), {
-          zoom: 13,
-          center: myLatLng
+        map = new google.maps.Map(document.getElementById('map'), {
+          zoom: 2,
+          center: new google.maps.LatLng(2.8,-187.3),
         });
 
+        var infowindow = new google.maps.InfoWindow();
 
-        var infowindow = new google.maps.InfoWindow({
-          content: '<div><IMG Border="10" ALIGN="Top" SRC="pot.jpg"><b>Title</b><br/>123 Address<br/> City,Country</div>'
-          });
+        // Create a <script> tag and set the USGS URL as the source.
+        var script = document.createElement('script');
+        // This example uses a local copy of the GeoJSON stored at
+        // http://earthquake.usgs.gov/earthquakes/feed/v1.0/summary/2.5_week.geojsonp
+        script.src = 'https://developers.google.com/maps/documentation/javascript/examples/json/earthquake_GeoJSONP.js';
+        document.getElementsByTagName('head')[0].appendChild(script);
 
+
+      // Loop through the results array and place a marker for each
+      // set of coordinates.
+      var sum = 0;
+      window.eqfeed_callback = function(results){
+        for (var i = 0; i < results.features.length; i++) {
+          var coords = results.features[i].geometry.coordinates;
+          var latLng = new google.maps.LatLng(coords[1],coords[0]);
+          var infowindow = new google.maps.InfoWindow({
+            content: '<div><IMG  SRC="pot.jpg"><br><b>\nTITLE</b><br/>123 Address<br/> City, Country</div>'
+            });
+          sum++;
           var marker = new google.maps.Marker({
-            position: myLatLng,
+            position: latLng,
             map: map,
-            title: 'Hello World!'
-          });
-          marker.addListener('click', function() {
-            infowindow.open(map, marker);
+            title: sum
           });
 
+          google.maps.event.addListener(marker, 'click', (function (marker, i) {
+               return function () {
+                   infowindow.setContent(sum);
+                   infowindow.open(map, marker);
+               }
+          })(marker, i));
           marker.setMap(map);
         }
-      </script>
-
-    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDzpNypdoCL0JOqDFnX5EmwGmEPt5RLADc&callback=initMap">
-    async defer></script>
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+      }
+    }
+    </script>
+    <script async defer
+    src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDzpNypdoCL0JOqDFnX5EmwGmEPt5RLADc&callback=initMap">
+    </script>
   </body>
 </html>
