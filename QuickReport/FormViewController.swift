@@ -93,47 +93,114 @@ class FormViewController: UIViewController, UITextViewDelegate, MKMapViewDelegat
                 
                 currentLocation = CLLocation(latitude: coordinate.latitude, longitude: coordinate.longitude)
                 
+                CLGeocoder().reverseGeocodeLocation(currentLocation, preferredLocale: nil)
+                
+                { (clPlacemark: [CLPlacemark]?, error: Error?) in
+                    guard let place = clPlacemark?.first else {
+                        print("No placemark from Apple: \(String(describing: error))")
+                        return
+                    }
+
+                    let postalAddressFormatter = CNPostalAddressFormatter()
+                    postalAddressFormatter.style = .mailingAddress
+                    var addressString: String?
+                    if let postalAddress = place.postalAddress {
+                        addressString = postalAddressFormatter.string(from: postalAddress)
+                    }
+                    self.addressText.text = addressString
+                    InitialViewController.address = addressString ?? " "
+                    
+                }
+                
                 getPlacemark(forLocation: currentLocation) {
-                (originPlacemark, error) in
-                    print("we are here!")
-                    if let err = error
-                    {
-                        print(err)
-                    }
-                    else if let pm = originPlacemark
-                    {
-                        var addressString : String = ""
-                        
-                        if pm.thoroughfare != nil {
-                            addressString = addressString + pm.thoroughfare! + "\n" // address
-                        }
-                        if pm.locality != nil {
-                            addressString = addressString + pm.locality! + ", " // city
-                        }
-                        if pm.country != nil {
-                            addressString = addressString + pm.administrativeArea! + ", " // state
-                        }
-                        if pm.postalCode != nil {
-                            addressString = addressString + pm.postalCode! + "\n" // zip code
-                        }
-                        if pm.postalCode != nil {
-                            addressString = addressString + pm.country!
-                        }
-                        
-                        print(InitialViewController.chosenIssue + "\n")
-                        if let subLocality = pm.subLocality
+                    (originPlacemark, error) in
+                        if let err = error
                         {
-                            self.parkText.text = subLocality
+                            print(err)
                         }
-                        print(addressString)
-                        self.addressText.text = addressString
-                        
-                        InitialViewController.address = addressString
-                    }
+                        else if let pm = originPlacemark
+                        {
+                            self.parkText.text = pm.subLocality ?? " "
+                        }
                 }
                 
             }
         }
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(true)
+        usingPark = ["Graffiti", "Litter", "Fallen Tree"].contains(InitialViewController.chosenIssue)
+        
+        if(!usingPark)
+        {
+            LocationStackView.isHidden = true
+        }
+    }
+    
+    func createImageRequest()
+    {
+        var semaphore = DispatchSemaphore (value: 0)
+
+        let parameters = [
+          [
+            "key": "image",
+            "value": "R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7",
+            "type": "text"
+          ]] as [[String : Any]]
+
+        let boundary = "Boundary-\(UUID().uuidString)"
+        var body = ""
+        var error: Error? = nil
+        for param in parameters {
+          if param["disabled"] == nil {
+            let paramName = param["key"]!
+            body += "--\(boundary)\r\n"
+            body += "Content-Disposition:form-data; name=\"\(paramName)\""
+            let paramType = param["type"] as! String
+            if paramType == "text" {
+              let paramValue = param["value"] as! String
+              body += "\r\n\r\n\(paramValue)\r\n"
+            } else {
+              let paramSrc = param["src"] as! String
+              let fileData = try! NSData(contentsOfFile:paramSrc, options:[]) as Data
+                
+              let fileContent = String(data: fileData, encoding: .utf8)!
+              body += "; filename=\"\(paramSrc)\"\r\n"
+                + "Content-Type: \"content-type header\"\r\n\r\n\(fileContent)\r\n"
+            }
+          }
+        }
+        body += "--\(boundary)--\r\n";
+        let postData = body.data(using: .utf8)
+
+        var request = URLRequest(url: URL(string: "https://api.imgur.com/3/image")!,timeoutInterval: Double.infinity)
+        request.addValue("Client-ID {{899966651dad6cd}}", forHTTPHeaderField: "Authorization")
+        request.addValue("multipart/form-data; boundary=\(boundary)", forHTTPHeaderField: "Content-Type")
+
+        request.httpMethod = "POST"
+        request.httpBody = postData
+
+        let task = URLSession.shared.dataTask(with: request) { data, response, error in
+          guard let data = data else {
+            print("IMGUR SHIT")
+            print(String(describing: error))
+            return
+          }
+        print("IMGUR SHIT")
+          print(String(data: data, encoding: .utf8)!)
+          semaphore.signal()
+        }
+
+        task.resume()
+        semaphore.wait()
+        
+        
+    }
+    
+    func loadImage()
+    {
+        
     }
     
     override func viewDidLoad() {
@@ -142,6 +209,11 @@ class FormViewController: UIViewController, UITextViewDelegate, MKMapViewDelegat
         print("view did load called")
         
         usingPark = ["Graffiti", "Litter", "Fallen Tree"].contains(InitialViewController.chosenIssue)
+        
+        createImageRequest()
+        
+        
+        
         
         if(!usingPark)
         {
@@ -220,7 +292,7 @@ class FormViewController: UIViewController, UITextViewDelegate, MKMapViewDelegat
                 {
                     self.parkText.text = pm.subLocality ?? " "
                 }
-            }
+        }
         
         self.issueText.text = InitialViewController.chosenIssue
         addressText.text = InitialViewController.address.replacingOccurrences(of: "\n", with: " ")
@@ -267,11 +339,16 @@ class FormViewController: UIViewController, UITextViewDelegate, MKMapViewDelegat
     }
     
     @IBAction func SubmitPressed(_ sender: Any) {
-        var dict = ["name" : InitialViewController.chosenIssue, "address" : addressText.text ?? "", "latitude" : String(currentLocation.coordinate.latitude), "longitude" : String(currentLocation.coordinate.longitude),  "describe" : descriptionText.text ?? ""]
         
-        if(usingPark)
+        var dict = ["name" : InitialViewController.chosenIssue, "address" : addressText.text.replacingOccurrences(of: "\n", with: " ") , "describe" : descriptionText.text ?? "", "latitude" : String(currentLocation.coordinate.latitude), "longitude" : String(currentLocation.coordinate.longitude)]
+        
+        if(usingPark) // add park if needed
         {
             dict["park"] = parkText.text ?? ""
+        }
+        if(InitialViewController.chosenIssue == "Fallen Tree") // add contact if needed
+        {
+            dict["contact"] = "6137298392"
         }
         
         guard let uploadData = try? JSONEncoder().encode(dict) else {
@@ -291,24 +368,26 @@ class FormViewController: UIViewController, UITextViewDelegate, MKMapViewDelegat
     
     func createRequest(uploadData: Data)
     {
-        let url = URL(string: "https://example.com/post")!
+        let url = URL(string: "https://quicker-report.herokuapp.com/form")!
         var request = URLRequest(url: url)
         request.httpMethod = "POST"
         request.setValue("application/json", forHTTPHeaderField: "Content-Type")
         
         let task = URLSession.shared.uploadTask(with: request, from: uploadData) { data, response, error in
-            if let error = error {
+            if error != nil {
                 FormViewController.success = false
                 return
             }
+            /*print((response as? HTTPURLResponse)?.statusCode ?? -1)
             guard let response = response as? HTTPURLResponse,
                 (200...299).contains(response.statusCode) else {
-                print ("server error")
+                    print ("server error ")
                 FormViewController.success = false
                 return
-            }
-            if let mimeType = response.mimeType,
-                mimeType == "application/json",
+            }*/
+            
+            print(response?.mimeType ?? " ")
+            if let _ = response?.mimeType,
                 let data = data,
                 let dataString = String(data: data, encoding: .utf8)
             {

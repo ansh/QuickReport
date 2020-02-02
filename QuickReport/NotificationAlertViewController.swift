@@ -20,7 +20,10 @@ class NotificationAlertViewController: UIViewController
         super.viewDidLoad()
         NotifTitle.text = myTitle
         NotifView.layer.maskedCorners = [.layerMinXMinYCorner, .layerMaxXMinYCorner]
-        NotifView.backgroundColor = success ? .green : .red
+        if(!success)
+        {
+            NotifView.backgroundColor = .red
+        }
     }
 
     @IBAction func OKPressed(_ sender: Any) {

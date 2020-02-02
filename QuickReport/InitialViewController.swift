@@ -19,6 +19,8 @@ class InitialViewController: UIViewController, UINavigationControllerDelegate, U
     @IBOutlet weak var IssueSelector: UISegmentedControl!
     @IBOutlet weak var TextLabel: UILabel!
     
+    static var image: UIImage!
+    
     var imagePicker: UIImagePickerController!
     var model: NewModel!
     
@@ -82,6 +84,7 @@ class InitialViewController: UIViewController, UINavigationControllerDelegate, U
         UIGraphicsBeginImageContextWithOptions(CGSize(width: 224, height: 224), true, 2.0)
         imageView.draw(CGRect(x: 0, y: 0, width: 224, height: 224))
         let newImage = UIGraphicsGetImageFromCurrentImageContext()!
+        InitialViewController.image = newImage
         UIGraphicsEndImageContext()
            
         
