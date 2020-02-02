@@ -33,10 +33,10 @@
       var map;
       function initMap() {
         map = new google.maps.Map(document.getElementById('map'), {
-          zoom: 2,
-          center: new google.maps.LatLng(2.8,-187.3),
+          zoom: 13,
+          center: new google.maps.LatLng(38.882385, -77.105196),
         });
-        
+
         var response;
 
         var infowindow = new google.maps.InfoWindow();
@@ -46,66 +46,74 @@
         xhr.send();
 
         xhr.onreadystatechange = processRequest;
-        
-        
+
+
         function processRequest() {
-        	if (xhr.readyState == 4 && xhr.status == 200) {
+          if (xhr.readyState == 4 && xhr.status == 200) {
         	    response = JSON.parse(xhr.responseText);
         	    for(var key in response) // issue name (i.e. Fallen Tree)
-        {
-        
-          console.log("printing " + key);
-          var val = response[key]; // i.e. array of all fallen trees
-          console.log(val);
-          for(var i = 0; i < val.length; i++)
-          {
-            var observation = val[i];
-            console.log(observation);
-            var name = observation['name'];
-            var address = observation['address'];
-            var park = "";
-            if(observation.hasOwnProperty('park'))
-            {
-              park = observation['park'];
+              {
+
+                var n = "" + key;
+                var ic;
+                if(n == "Graffiti"){
+                  ic = "http://maps.google.com/mapfiles/ms/icons/blue-dot.png"
+                }
+                else if(n == "Sidewalk Repair"){
+                  ic = "http://maps.google.com/mapfiles/ms/icons/green-dot.png"
+                }
+                else if(n == "Falllen Tree"){
+                  ic =  "http://maps.google.com/mapfiles/ms/icons/red-dot.png"
+                }
+                else if(n == "Litter"){
+                  ic = "http://maps.google.com/mapfiles/ms/icons/pink-dot.png"
+                }
+                else{
+                  ic = "http://maps.google.com/mapfiles/ms/icons/yellow-dot.png"
+                }
+                //console.log(n);
+                var val = response[key]; // i.e. array of all fallen trees
+                //console.log(val);
+                for(var i = 0; i < val.length; i++)
+                {
+                  var observation = val[i];
+                  console.log(observation);
+                  var name = observation['name'];
+                  var address = observation['address'];
+                  var park = "";
+                  if(observation.hasOwnProperty('park'))
+                  {
+                    park = observation['park'];
+                  }
+                  var describe = observation['describe'];
+                  var picture = observation['picture'];
+                  var lat = parseFloat(observation['latitude']);
+                  var long = parseFloat(observation['longitude']);
+                  //console.log(lat);
+                  //console.log(long);
+                  var latLng = new google.maps.LatLng(lat, long);
+
+
+
+                  var content = '<div><img><IMG SRC = "' + picture + '"></img><br><b>' + name + '</b><br/>' + address + '<br/>' + describe + '<br/>' + park + '<br/></div>';
+                  var marker = new google.maps.Marker({
+                    position: latLng,
+                    map: map,
+                    title: lat + "",
+                    icon: ic
+                  });
+                  google.maps.event.addListener(marker,'click', (function(marker,content,infowindow){
+                    return function() {
+                        infowindow.setContent(content);
+                        infowindow.open(map,marker);
+                    };
+                  })(marker,content,infowindow));
+                  marker.setMap(map);
+                }
+                }
+              }
             }
-            var describe = observation['describe'];
-            var picture = observation['picture'];
-            var lat = parseFloat(observation['latitude']);
-            var long = parseFloat(observation['longitude']);
-            console.log(lat);
-            console.log(long);
-            var latLng = new google.maps.LatLng(lat, long);
-
-
-            var content = '<div><img><IMG SRC = "' + picture + '"></img><br><b>' + name + '</b><br/>' + address + '<br/>' + describe + '<br/>' + park + '<br/></div>';
-            var marker = new google.maps.Marker({
-              position: latLng,
-              map: map,
-              title: lat + ""
-            });
-
-            google.maps.event.addListener(marker,'click', (function(marker,content,infowindow){
-              return function() {
-                  infowindow.setContent(content);
-                  infowindow.open(map,marker);
-              };
-            })(marker,content,infowindow));
-            marker.setMap(map);
-          }
-        }
-      }
         	}
-        }
-        
-        console.log(response);
-
-
-        //var text = '{ "Graffiti": [{ "name": "Graffiti", "address": "N Highland St., Arlington, VA 22201", "describe": "ignore", "picture": "https://i.ibb.co/vLhhWGt/google.jpg", "latitude": 12, "longitude": 33 }], "Litter": [{}], "Fallen Tree": [{ "name": "Fallen Tree", "address": "N Highland St., Arlington, VA 22201", "park": "Lyons Park", "contact": "4072342343", "describe": "ignore", "picture": "https://i.ibb.co/vLhhWGt/google.jpg", "latitude": -10, "longitude": 37 }, { "name": "Fallen Tree", "address": "N Highland St., Arlington, VA 22201", "park": "Lyons Park", "contact": "4072342343", "describe": "ignore", "picture": "https://i.ibb.co/vLhhWGt/google.jpg", "latitude": -34, "longitude": 75 }, { "name": "Fallen Tree", "address": "N Highland St., Arlington, VA 22201", "park": "Lyons Park", "contact": "4072342343", "describe": "ignore", "picture": "https://i.ibb.co/vLhhWGt/google.jpg", "latitude": -70, "longitude": 5 }], "Pothole": [{}], "Sidewalk Repair": [{}] }';
-
-        //var json = JSON.parse(text);
-
-        
-        
     </script>
     <script async defer
     src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDzpNypdoCL0JOqDFnX5EmwGmEPt5RLADc&callback=initMap">
