@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Styled Maps - Night Mode</title>
+    <meta name="viewport" content="initial-scale=1.0, user-scalable=no">
+    <meta charset="utf-8">
+    <style>
+      /* Always set the map height explicitly to define the size of the div
+       * element that contains the map. */
+      #map {
+        height: 100%;
+      }
+      /* Optional: Makes the sample page fill the window. */
+      html, body {
+        height: 100%;
+        margin: 0 auto;
+        padding: 0;
+      }
+      img {
+        max-width: 100%;
+        max-height: 100%;
+        margin: 30;
+        padding: 50;
+      }
+      text {
+        position: absolute;
+        left: 50%;
+        transform: translate(-50%);
+      }
+    </style>
+  </head>
+  <body>
+    <div id="map"></div>
+    <script>
+      function initMap() {
+        // Styles a map in night mode.
+        var map = new google.maps.Map(document.getElementById('map'), {
+          center: {lat: 38.882385, lng: -77.105196},
+          zoom: 13,
+          styles: [
+            {elementType: 'geometry', stylers: [{color: '#242f3e'}]},
+            {elementType: 'labels.text.stroke', stylers: [{color: '#242f3e'}]},
+            {elementType: 'labels.text.fill', stylers: [{color: '#746855'}]},
+            {
+              featureType: 'administrative.locality',
+              elementType: 'labels.text.fill',
+              stylers: [{color: '#d59563'}]
+            },
+            {
+              featureType: 'poi',
+              elementType: 'labels.text.fill',
+              stylers: [{color: '#d59563'}]
+            },
+            {
+              featureType: 'poi.park',
+              elementType: 'geometry',
+              stylers: [{color: '#263c3f'}]
+            },
+            {
+              featureType: 'poi.park',
+              elementType: 'labels.text.fill',
+              stylers: [{color: '#6b9a76'}]
+            },
+            {
+              featureType: 'road',
+              elementType: 'geometry',
+              stylers: [{color: '#38414e'}]
+            },
+            {
+              featureType: 'road',
+              elementType: 'geometry.stroke',
+              stylers: [{color: '#212a37'}]
+            },
+            {
+              featureType: 'road',
+              elementType: 'labels.text.fill',
+              stylers: [{color: '#9ca5b3'}]
+            },
+            {
+              featureType: 'road.highway',
+              elementType: 'geometry',
+              stylers: [{color: '#746855'}]
+            },
+            {
+              featureType: 'road.highway',
+              elementType: 'geometry.stroke',
+              stylers: [{color: '#1f2835'}]
+            },
+            {
+              featureType: 'road.highway',
+              elementType: 'labels.text.fill',
+              stylers: [{color: '#f3d19c'}]
+            },
+            {
+              featureType: 'transit',
+              elementType: 'geometry',
+              stylers: [{color: '#2f3948'}]
+            },
+            {
+              featureType: 'transit.station',
+              elementType: 'labels.text.fill',
+              stylers: [{color: '#d59563'}]
+            },
+            {
+              featureType: 'water',
+              elementType: 'geometry',
+              stylers: [{color: '#17263c'}]
+            },
+            {
+              featureType: 'water',
+              elementType: 'labels.text.fill',
+              stylers: [{color: '#515c6d'}]
+            },
+            {
+              featureType: 'water',
+              elementType: 'labels.text.stroke',
+              stylers: [{color: '#17263c'}]
+            }
+          ]
+        });
+
+        var response;
+
+        var infowindow = new google.maps.InfoWindow();
+
+        var xhr = new XMLHttpRequest();
+        xhr.open('GET', "https://quicker-report.herokuapp.com/getdata", true);
+        xhr.send();
+
+        xhr.onreadystatechange = processRequest;
+
+
+        function processRequest() {
+          if (xhr.readyState == 4 && xhr.status == 200) {
+        	    response = JSON.parse(xhr.responseText);
+        	    for(var key in response) // issue name (i.e. Fallen Tree)
+              {
+
+                var n = "" + key;
+                var ic;
+                if(n == "Graffiti"){
+                  ic = "http://maps.google.com/mapfiles/ms/icons/blue-dot.png"
+                }
+                else if(n == "Sidewalk Repair"){
+                  ic = "http://maps.google.com/mapfiles/ms/icons/green-dot.png"
+                }
+                else if(n == "Falllen Tree"){
+                  ic =  "http://maps.google.com/mapfiles/ms/icons/red-dot.png"
+                }
+                else if(n == "Litter"){
+                  ic = "http://maps.google.com/mapfiles/ms/icons/pink-dot.png"
+                }
+                else{
+                  ic = "http://maps.google.com/mapfiles/ms/icons/yellow-dot.png"
+                }
+                //console.log(n);
+                var val = response[key]; // i.e. array of all fallen trees
+                //console.log(val);
+                for(var i = 0; i < val.length; i++)
+                {
+                  var observation = val[i];
+                  console.log(observation);
+                  var name = observation['name'];
+                  var address = observation['address'];
+                  var park = "";
+                  if(observation.hasOwnProperty('park'))
+                  {
+                    park = observation['park'];
+                  }
+                  var describe = observation['describe'];
+                  var picture = observation['picture'];
+                  var lat = parseFloat(observation['latitude']);
+                  var long = parseFloat(observation['longitude']);
+                  //console.log(lat);
+                  //console.log(long);
+                  var latLng = new google.maps.LatLng(lat, long);
+
+
+
+                  var content = '<div><img><IMG SRC = "' + picture + '"></img><br><b>' + name + '</b><br/>' + address + '<br/>' + describe + '<br/>' + park + '<br/></div>';
+                  var marker = new google.maps.Marker({
+                    position: latLng,
+                    map: map,
+                    title: lat + "",
+                    icon: ic
+                  });
+                  google.maps.event.addListener(marker,'click', (function(marker,content,infowindow){
+                    return function() {
+                        infowindow.setContent(content);
+                        infowindow.open(map,marker);
+                    };
+                  })(marker,content,infowindow));
+                  marker.setMap(map);
+                }
+                }
+              }
+            }
+        	}
+    </script>
+    <script async defer
+    src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDzpNypdoCL0JOqDFnX5EmwGmEPt5RLADc&callback=initMap">
+    </script>
+  </body>
+</html>
