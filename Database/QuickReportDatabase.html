@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html>
   <head>
+     <meta charset="UTF-8">
     <style>
       /* Always set the map height explicitly to define the size of the div
        * element that contains the map. */
@@ -14,8 +15,8 @@
         padding: 0;
       }
       img {
-        max-width: 200%;
-        max-height: 300%;
+        max-width: 100%;
+        max-height: 100%;
         margin: 30;
         padding: 50;
       }
@@ -35,44 +36,76 @@
           zoom: 2,
           center: new google.maps.LatLng(2.8,-187.3),
         });
+        
+        var response;
 
         var infowindow = new google.maps.InfoWindow();
 
-        // Create a <script> tag and set the USGS URL as the source.
-        var script = document.createElement('script');
-        // This example uses a local copy of the GeoJSON stored at
-        // http://earthquake.usgs.gov/earthquakes/feed/v1.0/summary/2.5_week.geojsonp
-        script.src = 'https://developers.google.com/maps/documentation/javascript/examples/json/earthquake_GeoJSONP.js';
-        document.getElementsByTagName('head')[0].appendChild(script);
+        var xhr = new XMLHttpRequest();
+        xhr.open('GET', "https://quicker-report.herokuapp.com/getdata", true);
+        xhr.send();
+
+        xhr.onreadystatechange = processRequest;
+        
+        
+        function processRequest() {
+        	if (xhr.readyState == 4 && xhr.status == 200) {
+        	    response = JSON.parse(xhr.responseText);
+        	    for(var key in response) // issue name (i.e. Fallen Tree)
+        {
+        
+          console.log("printing " + key);
+          var val = response[key]; // i.e. array of all fallen trees
+          console.log(val);
+          for(var i = 0; i < val.length; i++)
+          {
+            var observation = val[i];
+            console.log(observation);
+            var name = observation['name'];
+            var address = observation['address'];
+            var park = "";
+            if(observation.hasOwnProperty('park'))
+            {
+              park = observation['park'];
+            }
+            var describe = observation['describe'];
+            var picture = observation['picture'];
+            var lat = parseFloat(observation['latitude']);
+            var long = parseFloat(observation['longitude']);
+            console.log(lat);
+            console.log(long);
+            var latLng = new google.maps.LatLng(lat, long);
 
 
-      // Loop through the results array and place a marker for each
-      // set of coordinates.
-      var sum = 0;
-      window.eqfeed_callback = function(results){
-        for (var i = 0; i < results.features.length; i++) {
-          var coords = results.features[i].geometry.coordinates;
-          var latLng = new google.maps.LatLng(coords[1],coords[0]);
-          var infowindow = new google.maps.InfoWindow({
-            content: '<div><IMG  SRC="pot.jpg"><br><b>\nTITLE</b><br/>123 Address<br/> City, Country</div>'
+            var content = '<div><img><IMG SRC = "' + picture + '"></img><br><b>' + name + '</b><br/>' + address + '<br/>' + describe + '<br/>' + park + '<br/></div>';
+            var marker = new google.maps.Marker({
+              position: latLng,
+              map: map,
+              title: lat + ""
             });
-          sum++;
-          var marker = new google.maps.Marker({
-            position: latLng,
-            map: map,
-            title: sum
-          });
 
-          google.maps.event.addListener(marker, 'click', (function (marker, i) {
-               return function () {
-                   infowindow.setContent(sum);
-                   infowindow.open(map, marker);
-               }
-          })(marker, i));
-          marker.setMap(map);
+            google.maps.event.addListener(marker,'click', (function(marker,content,infowindow){
+              return function() {
+                  infowindow.setContent(content);
+                  infowindow.open(map,marker);
+              };
+            })(marker,content,infowindow));
+            marker.setMap(map);
+          }
         }
       }
-    }
+        	}
+        }
+        
+        console.log(response);
+
+
+        //var text = '{ "Graffiti": [{ "name": "Graffiti", "address": "N Highland St., Arlington, VA 22201", "describe": "ignore", "picture": "https://i.ibb.co/vLhhWGt/google.jpg", "latitude": 12, "longitude": 33 }], "Litter": [{}], "Fallen Tree": [{ "name": "Fallen Tree", "address": "N Highland St., Arlington, VA 22201", "park": "Lyons Park", "contact": "4072342343", "describe": "ignore", "picture": "https://i.ibb.co/vLhhWGt/google.jpg", "latitude": -10, "longitude": 37 }, { "name": "Fallen Tree", "address": "N Highland St., Arlington, VA 22201", "park": "Lyons Park", "contact": "4072342343", "describe": "ignore", "picture": "https://i.ibb.co/vLhhWGt/google.jpg", "latitude": -34, "longitude": 75 }, { "name": "Fallen Tree", "address": "N Highland St., Arlington, VA 22201", "park": "Lyons Park", "contact": "4072342343", "describe": "ignore", "picture": "https://i.ibb.co/vLhhWGt/google.jpg", "latitude": -70, "longitude": 5 }], "Pothole": [{}], "Sidewalk Repair": [{}] }';
+
+        //var json = JSON.parse(text);
+
+        
+        
     </script>
     <script async defer
     src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDzpNypdoCL0JOqDFnX5EmwGmEPt5RLADc&callback=initMap">
