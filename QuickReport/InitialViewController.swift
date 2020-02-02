@@ -31,7 +31,7 @@ class InitialViewController: UIViewController, UINavigationControllerDelegate, U
     
     let myShortenedIssues = ["Pothole", "Litter", "Fallen Tree", "Sidewalk Repair", "Graffiti"]
     
-    
+   
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -80,11 +80,20 @@ class InitialViewController: UIViewController, UINavigationControllerDelegate, U
         imagePicker.dismiss(animated: true, completion: nil)
         imageView.image = info[.originalImage] as? UIImage // retrieve image
         
-        // Converts image into 299x299 square
+        
+        print("width and height")
+        print(imageView.image?.size.width ?? "fuck u")
+        print(imageView.image?.size.height)
+        
+        
+        
+        // Converts image into 299x299? square
         UIGraphicsBeginImageContextWithOptions(CGSize(width: 224, height: 224), true, 2.0)
+        
         imageView.draw(CGRect(x: 0, y: 0, width: 224, height: 224))
+        
         let newImage = UIGraphicsGetImageFromCurrentImageContext()!
-        InitialViewController.image = newImage
+        
         UIGraphicsEndImageContext()
            
         
@@ -107,6 +116,7 @@ class InitialViewController: UIViewController, UINavigationControllerDelegate, U
         
         UIGraphicsPushContext(context!)
         newImage.draw(in: CGRect(x: 0, y: 0, width: newImage.size.width, height: newImage.size.height))
+        InitialViewController.image = imageView.image
         UIGraphicsPopContext()
         CVPixelBufferUnlockBaseAddress(pixelBuffer!, CVPixelBufferLockFlags(rawValue: 0))
         

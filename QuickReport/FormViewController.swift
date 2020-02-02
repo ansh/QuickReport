@@ -49,6 +49,8 @@ class FormViewController: UIViewController, UITextViewDelegate, MKMapViewDelegat
     
     var usingPark: Bool!
     
+    var linkFinal: String!
+    
     
     func textView(_ textView: UITextView, shouldChangeTextIn range: NSRange, replacementText text: String) -> Bool {
         if text == "\n" {
@@ -131,6 +133,7 @@ class FormViewController: UIViewController, UITextViewDelegate, MKMapViewDelegat
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(true)
         usingPark = ["Graffiti", "Litter", "Fallen Tree"].contains(InitialViewController.chosenIssue)
+        createImageRequest()
         
         if(!usingPark)
         {
@@ -140,76 +143,83 @@ class FormViewController: UIViewController, UITextViewDelegate, MKMapViewDelegat
     
     func createImageRequest()
     {
-        var semaphore = DispatchSemaphore (value: 0)
-        
-        let image : UIImage = InitialViewController.image!
-        let imageData:NSData = image.pngData()! as NSData
-        let strBase64 = imageData.base64EncodedString(options: .lineLength64Characters)
-        
-        var finalJSON: JSONDecoder
+        DispatchQueue.global(qos: .background).async
+            {
+        DispatchQueue.main.async
+        {
+            var semaphore = DispatchSemaphore (value: 0)
+            
+            let image : UIImage = InitialViewController.image!
+            let imageData:NSData = image.pngData()! as NSData
+            let strBase64 = imageData.base64EncodedString(options: .lineLength64Characters)
+            
 
-        
 
-        let parameters = [
-          [
-            "key": "image",
-            "value": strBase64,
-            "type": "text"
-          ]] as [[String : Any]]
 
-        let boundary = "Boundary-\(UUID().uuidString)"
-        var body = ""
-        var error: Error? = nil
-        for param in parameters {
-          if param["disabled"] == nil {
-            let paramName = param["key"]!
-            body += "--\(boundary)\r\n"
-            body += "Content-Disposition:form-data; name=\"\(paramName)\""
-            let paramType = param["type"] as! String
-            if paramType == "text" {
-              let paramValue = param["value"] as! String
-              body += "\r\n\r\n\(paramValue)\r\n"
-            } else {
-              let paramSrc = param["src"] as! String
-              let fileData = try! NSData(contentsOfFile:paramSrc, options:[]) as Data
-                
-              let fileContent = String(data: fileData, encoding: .utf8)!
-              body += "; filename=\"\(paramSrc)\"\r\n"
-                + "Content-Type: \"content-type header\"\r\n\r\n\(fileContent)\r\n"
+            let parameters = [
+              [
+                "key": "image",
+                "value": strBase64,
+                "type": "text"
+              ]] as [[String : Any]]
+
+            let boundary = "Boundary-\(UUID().uuidString)"
+            var body = ""
+            var error: Error? = nil
+            for param in parameters {
+              if param["disabled"] == nil {
+                let paramName = param["key"]!
+                body += "--\(boundary)\r\n"
+                body += "Content-Disposition:form-data; name=\"\(paramName)\""
+                let paramType = param["type"] as! String
+                if paramType == "text" {
+                  let paramValue = param["value"] as! String
+                  body += "\r\n\r\n\(paramValue)\r\n"
+                } else {
+                  let paramSrc = param["src"] as! String
+                  let fileData = try! NSData(contentsOfFile:paramSrc, options:[]) as Data
+                    
+                  let fileContent = String(data: fileData, encoding: .utf8)!
+                  body += "; filename=\"\(paramSrc)\"\r\n"
+                    + "Content-Type: \"content-type header\"\r\n\r\n\(fileContent)\r\n"
+                }
+              }
             }
-          }
+            body += "--\(boundary)--\r\n";
+            let postData = body.data(using: .utf8)
+
+            var request = URLRequest(url: URL(string: "https://api.imgur.com/3/image")!,timeoutInterval: Double.infinity)
+            request.addValue("Client-ID 546c25a59c58ad7", forHTTPHeaderField: "Authorization")
+            request.addValue("multipart/form-data; boundary=\(boundary)", forHTTPHeaderField: "Content-Type")
+
+            request.httpMethod = "POST"
+            request.httpBody = postData
+
+            let task = URLSession.shared.dataTask(with: request) { data, response, error in
+              guard let data = data else {
+                
+                print(String(describing: error))
+                return
+              }
+                let JSONFinal = try? (JSONSerialization.jsonObject(with: data, options: []) as! [String: Any])
+                let dataFinal = JSONFinal!["data"] as! [String: Any]
+                self.linkFinal = dataFinal["link"] as! String
+                
+                
+
+                
+              print(String(data: data, encoding: .utf8)!)
+              semaphore.signal()
+            }
+            
+            
+
+            task.resume()
+            semaphore.wait()
         }
-        body += "--\(boundary)--\r\n";
-        let postData = body.data(using: .utf8)
-
-        var request = URLRequest(url: URL(string: "https://api.imgur.com/3/image")!,timeoutInterval: Double.infinity)
-        request.addValue("Client-ID 546c25a59c58ad7", forHTTPHeaderField: "Authorization")
-        request.addValue("multipart/form-data; boundary=\(boundary)", forHTTPHeaderField: "Content-Type")
-
-        request.httpMethod = "POST"
-        request.httpBody = postData
-
-        let task = URLSession.shared.dataTask(with: request) { data, response, error in
-          guard let data = data else {
-            print(String(describing: error))
-            return
-          }
-
-          print(String(data: data, encoding: .utf8)!)
-          semaphore.signal()
         }
-        
-
-        task.resume()
-        semaphore.wait()
-        
-        
     }
     
-    func loadImage()
-    {
-        
-    }
     
 
 
@@ -220,8 +230,6 @@ class FormViewController: UIViewController, UITextViewDelegate, MKMapViewDelegat
         print("view did load called")
         
         usingPark = ["Graffiti", "Litter", "Fallen Tree"].contains(InitialViewController.chosenIssue)
-        
-        createImageRequest()
         
         
         
@@ -351,7 +359,9 @@ class FormViewController: UIViewController, UITextViewDelegate, MKMapViewDelegat
     
     @IBAction func SubmitPressed(_ sender: Any) {
         
-        var dict = ["name" : InitialViewController.chosenIssue, "address" : addressText.text.replacingOccurrences(of: "\n", with: " ") , "describe" : descriptionText.text ?? "", "latitude" : String(currentLocation.coordinate.latitude), "longitude" : String(currentLocation.coordinate.longitude)]
+        var dict = ["name" : InitialViewController.chosenIssue, "address" : addressText.text.replacingOccurrences(of: "\n", with: " ") , "describe" : descriptionText.text ?? "", "latitude" : String(currentLocation.coordinate.latitude), "longitude" : String(currentLocation.coordinate.longitude), "image" : linkFinal]
+        
+        print(linkFinal)
         
         if(usingPark) // add park if needed
         {
