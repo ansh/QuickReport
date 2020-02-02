@@ -141,11 +141,17 @@ class FormViewController: UIViewController, UITextViewDelegate, MKMapViewDelegat
     func createImageRequest()
     {
         var semaphore = DispatchSemaphore (value: 0)
+        
+        let image : UIImage = InitialViewController.image!
+        let imageData:NSData = image.pngData()! as NSData
+        let strBase64 = imageData.base64EncodedString(options: .lineLength64Characters)
+
+        
 
         let parameters = [
           [
             "key": "image",
-            "value": "R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7",
+            "value": strBase64,
             "type": "text"
           ]] as [[String : Any]]
 
@@ -175,7 +181,7 @@ class FormViewController: UIViewController, UITextViewDelegate, MKMapViewDelegat
         let postData = body.data(using: .utf8)
 
         var request = URLRequest(url: URL(string: "https://api.imgur.com/3/image")!,timeoutInterval: Double.infinity)
-        request.addValue("Client-ID {{899966651dad6cd}}", forHTTPHeaderField: "Authorization")
+        request.addValue("Client-ID 546c25a59c58ad7", forHTTPHeaderField: "Authorization")
         request.addValue("multipart/form-data; boundary=\(boundary)", forHTTPHeaderField: "Content-Type")
 
         request.httpMethod = "POST"

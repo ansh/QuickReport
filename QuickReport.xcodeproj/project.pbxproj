@@ -313,7 +313,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = JJ3T82U92L;
+				DEVELOPMENT_TEAM = 8V56LM5E58;
 				INFOPLIST_FILE = "$(SRCROOT)/QuickReport/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -331,7 +331,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = JJ3T82U92L;
+				DEVELOPMENT_TEAM = 8V56LM5E58;
 				INFOPLIST_FILE = "$(SRCROOT)/QuickReport/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
