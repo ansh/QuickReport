@@ -1,1 +1,42 @@
-{"Graffiti": [{"name": "Graffiti", "address": "N Highland St., Arlington, VA 22201", "park": "Lyons Park", "describe": "ignore", "picture": "https://i.ibb.co/vLhhWGt/google.jpg"}], "Litter": [], "Fallen Tree": [{"name": "Fallen Tree", "address": "N Highland St., Arlington, VA 22201", "park": "Lyons Park", "contact": "4072342343", "describe": "ignore", "picture": "https://i.ibb.co/vLhhWGt/google.jpg"}, {"name": "Fallen Tree", "address": "N Highland St., Arlington, VA 22201", "park": "Lyons Park", "contact": "4072342343", "describe": "ignore", "picture": "https://i.ibb.co/vLhhWGt/google.jpg"}, {"name": "Fallen Tree", "address": "N Highland St., Arlington, VA 22201", "park": "Lyons Park", "contact": "4072342343", "describe": "ignore", "picture": "https://i.ibb.co/vLhhWGt/google.jpg"}], "Pothole": [], "Sidewalk Repair": []}
+{
+	"Graffiti": [{
+		"name": "Graffiti",
+		"address": "N Highland St., Arlington, VA 22201",
+		"park": "Lyons Park",
+		"describe": "ignore",
+		"picture": "https://i.ibb.co/vLhhWGt/google.jpg",
+    "latitude": 12,
+    "longitude": 33
+	}],
+	"Litter": [{}],
+	"Fallen Tree": [{
+		"name": "Fallen Tree",
+		"address": "N Highland St., Arlington, VA 22201",
+		"park": "Lyons Park",
+		"contact": "4072342343",
+		"describe": "ignore",
+		"picture": "https://i.ibb.co/vLhhWGt/google.jpg",
+    "latitude": -10,
+    "longitude": 37
+	}, {
+		"name": "Fallen Tree",
+		"address": "N Highland St., Arlington, VA 22201",
+		"park": "Lyons Park",
+		"contact": "4072342343",
+		"describe": "ignore",
+		"picture": "https://i.ibb.co/vLhhWGt/google.jpg",
+    "latitude": -34,
+    "longitude": 75
+	}, {
+		"name": "Fallen Tree",
+		"address": "N Highland St., Arlington, VA 22201",
+		"park": "Lyons Park",
+		"contact": "4072342343",
+		"describe": "ignore",
+		"picture": "https://i.ibb.co/vLhhWGt/google.jpg",
+    "latitude": -70,
+    "longitude": 5
+	}],
+	"Pothole": [{}],
+	"Sidewalk Repair": [{}]
+}
