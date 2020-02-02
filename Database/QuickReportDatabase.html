@@ -29,34 +29,29 @@
           center: myLatLng
         });
 
-        var contentString = '<div id="content">'+
-           '<div id="siteNotice">'+
-           '</div>'+
-           '<h1 id="firstHeading" class="firstHeading">Pothole</h1>'+
-           '<div id="bodyContent">'+
-           '<p>A user has reported a pothole at this location</p>'+
-           '<p>Attribution: Uluru, <a href=C\:/Users\nigel\Documents\QuickReport Training Data\Potholes</a> '+
-           '(last visited June 22, 2009).</p>'+
-           '</div>'+
-           '</div>';
-      var infowindow = new google.maps.InfoWindow({
-            content: '<div><IMG Border="10" ALIGN="Top" SRC="pot.jpg"><b>Title</b><br/>123 Address<br/> City,Country</div>'
-        });
+        var data = JSON.parse("allData.json");
+        console.log(data);
 
-        var marker = new google.maps.Marker({
-          position: myLatLng,
-          map: map,
-          title: 'Hello World!'
-        });
-        marker.addListener('click', function() {
-          infowindow.open(map, marker);
-        });
-      }
 
-      // To add the marker to the map, call setMap();
-      marker.setMap(map);
-    </script>
+
+        var infowindow = new google.maps.InfoWindow({
+          content: '<div><IMG Border="10" ALIGN="Top" SRC="pot.jpg"><b>Title</b><br/>123 Address<br/> City,Country</div>'
+          });
+
+          var marker = new google.maps.Marker({
+            position: myLatLng,
+            map: map,
+            title: 'Hello World!'
+          });
+          marker.addListener('click', function() {
+            infowindow.open(map, marker);
+          });
+
+          marker.setMap(map);
+        }
+
     <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDzpNypdoCL0JOqDFnX5EmwGmEPt5RLADc&callback=initMap"
     async defer></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
   </body>
 </html>
