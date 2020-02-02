@@ -20,6 +20,10 @@
   </head>
   <body>
     <div id="map"></div>
+    <script src="allData.json">
+    console.log(allData);
+  var data = JSON.parse(allData);
+console.log(data)</script>
     <script>
       function initMap() {
         var myLatLng = {lat: 38.882292, lng: -77.104661};
@@ -28,10 +32,6 @@
           zoom: 13,
           center: myLatLng
         });
-
-        var data = JSON.parse("allData.json");
-        console.log(data);
-
 
 
         var infowindow = new google.maps.InfoWindow({
@@ -49,8 +49,9 @@
 
           marker.setMap(map);
         }
+      </script>
 
-    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDzpNypdoCL0JOqDFnX5EmwGmEPt5RLADc&callback=initMap"
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDzpNypdoCL0JOqDFnX5EmwGmEPt5RLADc&callback=initMap">
     async defer></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
   </body>
