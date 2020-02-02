@@ -21,13 +21,40 @@
   <body>
     <div id="map"></div>
     <script>
-      var map;
       function initMap() {
-        map = new google.maps.Map(document.getElementById('map'), {
-          center: {lat: 38.882292, lng: -77.104661},
-          zoom: 13
+        var myLatLng = {lat: 38.882292, lng: -77.104661};
+
+        var map = new google.maps.Map(document.getElementById('map'), {
+          zoom: 13,
+          center: myLatLng
+        });
+
+        var contentString = '<div id="content">'+
+           '<div id="siteNotice">'+
+           '</div>'+
+           '<h1 id="firstHeading" class="firstHeading">Pothole</h1>'+
+           '<div id="bodyContent">'+
+           '<p>A user has reported a pothole at this location</p>'+
+           '<p>Attribution: Uluru, <a href=C\:/Users\nigel\Documents\QuickReport Training Data\Potholes</a> '+
+           '(last visited June 22, 2009).</p>'+
+           '</div>'+
+           '</div>';
+      var infowindow = new google.maps.InfoWindow({
+            content: '<div><IMG Border="10" ALIGN="Top" SRC="pot.jpg"><b>Title</b><br/>123 Address<br/> City,Country</div>'
+        });
+
+        var marker = new google.maps.Marker({
+          position: myLatLng,
+          map: map,
+          title: 'Hello World!'
+        });
+        marker.addListener('click', function() {
+          infowindow.open(map, marker);
         });
       }
+
+      // To add the marker to the map, call setMap();
+      marker.setMap(map);
     </script>
     <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDzpNypdoCL0JOqDFnX5EmwGmEPt5RLADc&callback=initMap"
     async defer></script>
