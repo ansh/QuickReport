@@ -145,6 +145,8 @@ class FormViewController: UIViewController, UITextViewDelegate, MKMapViewDelegat
         let image : UIImage = InitialViewController.image!
         let imageData:NSData = image.pngData()! as NSData
         let strBase64 = imageData.base64EncodedString(options: .lineLength64Characters)
+        
+        var finalJSON: JSONDecoder
 
         
 
@@ -189,14 +191,14 @@ class FormViewController: UIViewController, UITextViewDelegate, MKMapViewDelegat
 
         let task = URLSession.shared.dataTask(with: request) { data, response, error in
           guard let data = data else {
-            print("IMGUR SHIT")
             print(String(describing: error))
             return
           }
-        print("IMGUR SHIT")
+
           print(String(data: data, encoding: .utf8)!)
           semaphore.signal()
         }
+        
 
         task.resume()
         semaphore.wait()
@@ -208,6 +210,9 @@ class FormViewController: UIViewController, UITextViewDelegate, MKMapViewDelegat
     {
         
     }
+    
+
+
     
     override func viewDidLoad() {
         super.viewDidLoad()
